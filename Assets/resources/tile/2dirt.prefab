@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212313341974826086}
   m_Layer: 0
   m_Name: 2dirt
-  m_TagString: Untagged
+  m_TagString: tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -71,8 +71,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1573343083
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: de942c2e80b9660489f44b8d0482d95f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
