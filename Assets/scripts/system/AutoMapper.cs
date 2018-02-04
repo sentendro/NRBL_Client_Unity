@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class AutoMapper : MonoBehaviour {
     public string TILEPALETTE_DIR = "tile", MAPDATA_DIR = "data/map";
+    public int xgap = 0, ygap = -2;
+    public int pstart = 0, pend = 2;
 	// Use this for initialization
 	void Start () {
-        Load(MAPDATA_DIR, 0, -2);
+        Load(MAPDATA_DIR);
 	}
 	
 	// Update is called once per frame
@@ -14,7 +16,7 @@ public class AutoMapper : MonoBehaviour {
 
     }
 
-    public void Load(string mapfilename, int xgap, int ygap)
+    public void Load(string mapfilename)
     {
         //타일을 종류별로 불러옴
         GameObject[] tilePalette = Resources.LoadAll<GameObject>(TILEPALETTE_DIR);
@@ -37,6 +39,14 @@ public class AutoMapper : MonoBehaviour {
             GameObject goTile = Instantiate(tilePalette[idx], transform);
             goTile.transform.localPosition = new Vector3(x, y);
             goTile.name = "tile(" + x + "," + y + ")";
+
+            if(pstart <= y && y <= pend)
+            {
+                //플레이어가 유닛을 선택 가능한 지역을 다른 레이어에
+                //추가 시켜놓고 이들에 대해서만 레이캐스트 처리를 하려 한다
+                goTile.layer = LayerMask.NameToLayer("Placable");
+            }
+
             x++;
         }
     }
