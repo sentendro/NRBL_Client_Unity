@@ -38,7 +38,7 @@ public class SelectHelper : MonoBehaviour, OKCancelListener {
 
         //레이캐스트를 처리하기 위해선 BoxCollider2D가 필요하다
         RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero, 5f, layerMask);
-        
+
         if (hit.collider != null)
         {
             //애초에 팔레트로 선택된 유닛이 없으면 생산자체가 불가능
@@ -55,7 +55,7 @@ public class SelectHelper : MonoBehaviour, OKCancelListener {
                 selectedTile = hit.collider.gameObject;
                 //선택화면 공개
                 goSelected.SetActive(true);
-                goSelected.transform.localPosition = goSelected.transform.localPosition;
+                goSelected.transform.localPosition = selectedTile.transform.localPosition;
 
                 okCancelDlg.View("해당 위치에 선택한 유닛을 생산하시겠습니까?", this);
                 return true;
