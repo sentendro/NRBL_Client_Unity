@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4440191446652968}
   - component: {fileID: 212586918604933992}
+  - component: {fileID: 114223859441581382}
   m_Layer: 0
   m_Name: 2Soldier
   m_TagString: Untagged
@@ -40,6 +41,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114223859441581382
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1096031486120116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9e35a776a9d8d540af824d26fb7e444, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 
+  currentHealth: 0
+  maxHealth: 0
+  attack: 0
+  cost: 0
+  pop: 0
+  tiledPosition: {x: 0, y: 0}
+  owner: 0
 --- !u!212 &212586918604933992
 SpriteRenderer:
   m_ObjectHideFlags: 1

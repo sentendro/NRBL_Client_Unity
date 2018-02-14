@@ -7,7 +7,7 @@ public class TilesManager : MonoBehaviour {
     Tiles[][] allTiles;
 
     //전체 타일 한 줄의 수
-    const int numOfTile = 7;
+    public Vector2 numOfTile = new Vector2(7, 10);
 
     //싱글톤 패턴
     private static TilesManager instance;
@@ -27,10 +27,10 @@ public class TilesManager : MonoBehaviour {
             instance = this;
         }
         //전체 타일 공간확보
-        allTiles = new Tiles[numOfTile][];
-        for(int i = 0; i < numOfTile; i++)
+        allTiles = new Tiles[(int)(numOfTile.x)][];
+        for(int i = 0; i < numOfTile.x; i++)
         {
-            allTiles[i] = new Tiles[numOfTile];
+            allTiles[i] = new Tiles[(int)(numOfTile.y)];
         }
     }
     // Use this for initialization

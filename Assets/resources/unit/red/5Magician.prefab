@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4195915852272410}
   - component: {fileID: 212840033216142520}
+  - component: {fileID: 114427850722714050}
   m_Layer: 0
   m_Name: 5Magician
   m_TagString: Untagged
@@ -40,6 +41,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114427850722714050
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1516733058373590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33e68befb38a47f48a8b7b8a362ef49d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 
+  currentHealth: 0
+  maxHealth: 0
+  attack: 0
+  cost: 0
+  pop: 0
+  tiledPosition: {x: 0, y: 0}
+  owner: 0
 --- !u!212 &212840033216142520
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4172867066117256}
   - component: {fileID: 212749772144864456}
   - component: {fileID: 61580725694509416}
+  - component: {fileID: 114585496211067586}
   m_Layer: 8
   m_Name: 3House
   m_TagString: palette
@@ -66,6 +67,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.28, y: 1.64}
   m_EdgeRadius: 0
+--- !u!114 &114585496211067586
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1090109821715712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d76da448c7a3124cbec88c371afd9e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 
+  currentHealth: 0
+  maxHealth: 0
+  attack: 0
+  cost: 0
+  pop: 0
+  tiledPosition: {x: 0, y: 0}
+  owner: 0
 --- !u!212 &212749772144864456
 SpriteRenderer:
   m_ObjectHideFlags: 1

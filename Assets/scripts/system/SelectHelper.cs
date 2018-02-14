@@ -72,7 +72,12 @@ public class SelectHelper : MonoBehaviour, OKCancelListener {
     {
         //유닛팔레트에서 선택된 유닛을 그대로 복사생성한다
         GameObject createdUnit = Instantiate(unitPalette.selectedUnit, transform);
+        //유닛 클래스를 타일에 저장
+        selectedTile.GetComponent<Tiles>().setOn(createdUnit.GetComponent<AUnit>());
+        
         //위치를 타일과 일치시켜준다
+        //createdUnit.transform.parent = selectedTile.transform;
+        //위로 변경할 시 타일의 하위로 두면서 위치를 유지할 수 있음
         createdUnit.transform.localPosition = selectedTile.transform.localPosition;
         //선택된 유닛을 취소한다
         unitPalette.Release();

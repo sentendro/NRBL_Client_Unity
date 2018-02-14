@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4288868856555586}
   - component: {fileID: 212061054093513456}
+  - component: {fileID: 114780231468959768}
   m_Layer: 0
   m_Name: 4Castle
   m_TagString: Untagged
@@ -40,6 +41,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114780231468959768
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1977837619571180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fb7286c4d4540743a191eef0d6cbd71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 
+  currentHealth: 0
+  maxHealth: 0
+  attack: 0
+  cost: 0
+  pop: 0
+  tiledPosition: {x: 0, y: 0}
+  owner: 0
 --- !u!212 &212061054093513456
 SpriteRenderer:
   m_ObjectHideFlags: 1

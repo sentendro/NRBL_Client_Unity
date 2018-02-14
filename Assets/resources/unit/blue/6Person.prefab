@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4483059230851032}
   - component: {fileID: 212207856818460302}
   - component: {fileID: 61146165194238290}
+  - component: {fileID: 114378991745285680}
   m_Layer: 8
   m_Name: 6Person
   m_TagString: Untagged
@@ -66,6 +67,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.28, y: 1.64}
   m_EdgeRadius: 0
+--- !u!114 &114378991745285680
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1929665259798798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de52e986b8aa0f8469d8bdbe3b688ba1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 
+  currentHealth: 0
+  maxHealth: 0
+  attack: 0
+  cost: 0
+  pop: 0
+  tiledPosition: {x: 0, y: 0}
+  owner: 0
 --- !u!212 &212207856818460302
 SpriteRenderer:
   m_ObjectHideFlags: 1

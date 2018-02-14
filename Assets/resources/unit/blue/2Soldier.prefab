@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4493574846972126}
   - component: {fileID: 212215341182655578}
   - component: {fileID: 61904971942355974}
+  - component: {fileID: 114347643921036998}
   m_Layer: 8
   m_Name: 2Soldier
   m_TagString: palette
@@ -66,6 +67,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.28, y: 1.64}
   m_EdgeRadius: 0
+--- !u!114 &114347643921036998
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1524224805527746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9e35a776a9d8d540af824d26fb7e444, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 
+  currentHealth: 0
+  maxHealth: 0
+  attack: 0
+  cost: 0
+  pop: 0
+  tiledPosition: {x: 0, y: 0}
+  owner: 0
 --- !u!212 &212215341182655578
 SpriteRenderer:
   m_ObjectHideFlags: 1

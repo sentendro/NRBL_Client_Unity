@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4752232334531254}
   - component: {fileID: 212009689265412844}
   - component: {fileID: 61119223450169114}
+  - component: {fileID: 114754624106027112}
   m_Layer: 8
   m_Name: 4Castle
   m_TagString: palette
@@ -66,6 +67,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.28, y: 1.64}
   m_EdgeRadius: 0
+--- !u!114 &114754624106027112
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1592165955062442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fb7286c4d4540743a191eef0d6cbd71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 
+  currentHealth: 0
+  maxHealth: 0
+  attack: 0
+  cost: 0
+  pop: 0
+  tiledPosition: {x: 0, y: 0}
+  owner: 0
 --- !u!212 &212009689265412844
 SpriteRenderer:
   m_ObjectHideFlags: 1

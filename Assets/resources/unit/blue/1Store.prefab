@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4346226292992122}
   - component: {fileID: 212911666428360496}
   - component: {fileID: 61037258410525306}
+  - component: {fileID: 114698695094464934}
   m_Layer: 8
   m_Name: 1Store
   m_TagString: palette
@@ -66,6 +67,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.28, y: 1.64}
   m_EdgeRadius: 0
+--- !u!114 &114698695094464934
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1075269262527350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e90a7c7b81672544bc7aab87c347e1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 
+  currentHealth: 0
+  maxHealth: 0
+  attack: 0
+  cost: 0
+  pop: 0
+  tiledPosition: {x: 0, y: 0}
+  owner: 0
 --- !u!212 &212911666428360496
 SpriteRenderer:
   m_ObjectHideFlags: 1

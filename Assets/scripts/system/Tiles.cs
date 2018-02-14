@@ -12,4 +12,9 @@ public class Tiles : MonoBehaviour{
     {
         on = null;
     }
+
+    public void setOn(AUnit unit)
+    {
+        on = unit;
+    }
 }

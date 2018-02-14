@@ -39,6 +39,12 @@ public class AutoMapper : MonoBehaviour {
             GameObject goTile = Instantiate(tilePalette[idx], transform);
             goTile.transform.localPosition = new Vector3(x, y);
             goTile.name = "tile(" + x + "," + y + ")";
+            if (x >= 0 && x <= 6 && y >= 0 && y <= 9)
+            {
+                goTile.AddComponent<Tiles>();
+                goTile.GetComponent<Tiles>().selfPosition = new Vector2(x, y);
+                TilesManager.getInstance().updateTile(goTile.GetComponent<Tiles>());
+            }
 
             if(pstart <= y && y <= pend)
             {

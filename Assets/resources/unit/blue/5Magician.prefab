@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4058829592049430}
   - component: {fileID: 212082655362515884}
   - component: {fileID: 61760184754433730}
+  - component: {fileID: 114339493421672896}
   m_Layer: 8
   m_Name: 5Magician
   m_TagString: palette
@@ -66,6 +67,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.28, y: 1.64}
   m_EdgeRadius: 0
+--- !u!114 &114339493421672896
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1014962390371712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33e68befb38a47f48a8b7b8a362ef49d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 
+  currentHealth: 0
+  maxHealth: 0
+  attack: 0
+  cost: 0
+  pop: 0
+  tiledPosition: {x: 0, y: 0}
+  owner: 0
 --- !u!212 &212082655362515884
 SpriteRenderer:
   m_ObjectHideFlags: 1

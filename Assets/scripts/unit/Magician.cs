@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mage : AUnit {
+public class Magician : AUnit {
     public override void Behavior()
     {
     }
