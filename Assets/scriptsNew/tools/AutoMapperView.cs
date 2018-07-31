@@ -28,7 +28,7 @@ public class AutoMapperView : MonoBehaviour {
             rowObj.transform.localPosition = new Vector3(xDif, i + yDif, 0);
             rowObj.name = "row" + i;
 
-            for(int j = 0; j < rowData.Length; j++)
+            for(int j = 0; j < rowData.Length - 1; j++)
             {
                 int tileIdx = rowData[j] - '0';
                 GameObject tileObj = Instantiate(tiles[tileIdx], rowObj.transform);
