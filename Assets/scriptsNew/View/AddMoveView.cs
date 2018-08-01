@@ -7,14 +7,45 @@ public class AddMoveView : MonoBehaviour {
     public GameObject objBtnUp, objBtnLeft, objBtnDown, objBtnRight;
     public GameObject objBtnOk, objBtnCancel;
 
-    public GameObject objPalletteMakerView;
-
     public Button btnUp, btnLeft, btnDown, btnRight, btnOk, btnCancel;
-    public PalletteMakerView viewPalletteMaker;
-
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
+        Create();
+    }
+
+    private void Update()
+    {
+        //테스트 용
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        {
+            InputKey(KeyInput.LEFT);
+        }
+        else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        {
+            InputKey(KeyInput.UP);
+        }
+        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        {
+            InputKey(KeyInput.RIGHT);
+        }
+        else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+        {
+            InputKey(KeyInput.DOWN);
+        }
+        else if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Z))
+        {
+            InputKey(KeyInput.EXECUTE);
+        }
+        else if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.X))
+        {
+            InputKey(KeyInput.ESCAPE);
+        }
+    }
+
+    public void Create()
+    {
         btnUp = objBtnUp.GetComponent<Button>();
         btnLeft = objBtnLeft.GetComponent<Button>();
         btnDown = objBtnDown.GetComponent<Button>();
@@ -25,28 +56,38 @@ public class AddMoveView : MonoBehaviour {
 
         viewPalletteMaker = objPalletteMakerView.GetComponent<PalletteMakerView>();
 
-        btnUp.onClick.AddListener(OnClickUp);
-        btnLeft.onClick.AddListener(OnClickLeft);
-        btnDown.onClick.AddListener(OnClickDown);
-        btnRight.onClick.AddListener(OnClickRight);
+        btnUp.onClick.AddListener(() => 
+        {
+            InputKey(KeyInput.UP);
+        });
+
+        btnLeft.onClick.AddListener(() => 
+        {
+            InputKey(KeyInput.LEFT);
+        });
+
+        btnDown.onClick.AddListener(() => 
+        {
+            InputKey(KeyInput.DOWN);
+        });
+
+        btnRight.onClick.AddListener(() => 
+        {
+            InputKey(KeyInput.RIGHT);
+        });
+
+        btnOk.onClick.AddListener(() =>
+        {
+            InputKey(KeyInput.EXECUTE);
+        });
+
+        btnCancel.onClick.AddListener(() =>
+        {
+            InputKey(KeyInput.ESCAPE);
+        });
     }
 
-    public void OnClickUp()
-    {
-        
-    }
-
-    public void OnClickLeft()
-    {
-
-    }
-
-    public void OnClickDown()
-    {
-
-    }
-
-    public void OnClickRight()
+    public void InputKey(KeyInput key)
     {
 
     }
