@@ -6,13 +6,17 @@ using UnityEngine.UI;
 public class AddMoveView : MonoBehaviour {
     public GameObject objBtnUp, objBtnLeft, objBtnDown, objBtnRight;
     public GameObject objBtnOk, objBtnCancel;
+    public GameObject objPalletteMakerView, objMapSelectView;
 
-    public Button btnUp, btnLeft, btnDown, btnRight, btnOk, btnCancel;
+    private Button btnUp, btnLeft, btnDown, btnRight, btnOk, btnCancel;
+    private PalletteMakerView viewPalletteMaker;
+    private MapSelectView viewMapSelect;
+    private AddUnitController ctlrAddUnit;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
-        Create();
+        Init();
     }
 
     private void Update()
@@ -44,7 +48,7 @@ public class AddMoveView : MonoBehaviour {
         }
     }
 
-    public void Create()
+    public void Init()
     {
         btnUp = objBtnUp.GetComponent<Button>();
         btnLeft = objBtnLeft.GetComponent<Button>();
@@ -55,6 +59,9 @@ public class AddMoveView : MonoBehaviour {
         btnCancel = objBtnCancel.GetComponent<Button>();
 
         viewPalletteMaker = objPalletteMakerView.GetComponent<PalletteMakerView>();
+        viewMapSelect = objMapSelectView.GetComponent<MapSelectView>();
+
+        ctlrAddUnit = new AddUnitController(viewPalletteMaker, viewMapSelect, AddUnitController.SelectedStatus.PALLETTE);
 
         btnUp.onClick.AddListener(() => 
         {
@@ -89,6 +96,6 @@ public class AddMoveView : MonoBehaviour {
 
     public void InputKey(KeyInput key)
     {
-
+        ctlrAddUnit.InputKey(key);
     }
 }

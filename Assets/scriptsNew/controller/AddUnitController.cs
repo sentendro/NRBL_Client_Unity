@@ -9,15 +9,33 @@ public class AddUnitController : MonoBehaviour {
     private MapSelectView viewMapSelect;
     private SelectedStatus selectedStatus;
 
+    public AddUnitController(PalletteMakerView palletteMakerView, MapSelectView mapSelectView, SelectedStatus selectedStatus)
+    {
+        this.viewPalletteMaker = palletteMakerView;
+        this.viewMapSelect = mapSelectView;
+        this.selectedStatus = selectedStatus;
+    }
 
+    public void InputKey(KeyInput keyInput)
+    {
+        switch(this.selectedStatus)
+        {
+            case SelectedStatus.PALLETTE:
+                PalletteMakerView.SelectResult result = viewPalletteMaker.UpdateSelectedByKey(keyInput);
 
-
+                break;
+            case SelectedStatus.POSITION:
+                break;
+            case SelectedStatus.ANOTHERTURN:
+                break;
+        }
+    }
 
     public enum SelectedStatus {
-        PALLETTE, POSITION
+        PALLETTE, POSITION, ANOTHERTURN
     }
 
     public enum SelectedResult {
-        PALLETTE, POSITION, NOCHANGE, NEXTTURN
+        PALLETTE, POSITION, NOCHANGE, NEXTTURN, ADDUNIT
     }
 }
