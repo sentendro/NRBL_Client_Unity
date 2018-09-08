@@ -29,25 +29,39 @@ public class AddMoveView : MonoBehaviour {
         btnLeft.onClick.AddListener(OnClickLeft);
         btnDown.onClick.AddListener(OnClickDown);
         btnRight.onClick.AddListener(OnClickRight);
+
+
+        btnOk.onClick.AddListener(OnClickOk);
+        btnCancel.onClick.AddListener(OnClickCancel);
     }
 
     public void OnClickUp()
     {
-        
+        viewPalletteMaker.AddMoveSelected(0, 1);
     }
 
     public void OnClickLeft()
     {
-
+        viewPalletteMaker.AddMoveSelected(-1, 0);
     }
 
     public void OnClickDown()
     {
-
+        viewPalletteMaker.AddMoveSelected(0, -1);
     }
 
     public void OnClickRight()
     {
+        viewPalletteMaker.AddMoveSelected(1, 0);
+    }
 
+    public void OnClickOk()
+    {
+        viewPalletteMaker.AddStatus(1);
+    }
+
+    public void OnClickCancel()
+    {
+        viewPalletteMaker.AddStatus(-1);
     }
 }
