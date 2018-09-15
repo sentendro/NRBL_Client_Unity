@@ -214,8 +214,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 183324496}
-  - component: {fileID: 183324497}
   - component: {fileID: 183324498}
+  - component: {fileID: 183324497}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -230,9 +230,13 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 183324495}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalPosition: {x: -3, y: -2.2, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 502956309}
+  - {fileID: 1434480327}
+  - {fileID: 1598271857}
+  - {fileID: 1365269849}
   m_Father: {fileID: 764040153}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -244,13 +248,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 183324495}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b78e9c7e5f279bd4ca8c83aad520b671, type: 3}
+  m_Script: {fileID: 11500000, guid: fecec3dcba201a643b5bd2804707fadb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiles: []
-  xmlData: []
-  xDif: -3
-  yDif: -2.25
+  outMapView: {fileID: 0}
+  outButtonView: {fileID: 0}
+  outDialogView: {fileID: 0}
 --- !u!114 &183324498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,6 +265,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be68e197947159a4fb1ebf9ac62e437d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outPallette: {fileID: 502956308}
+  outUnits: {fileID: 1434480326}
+  outTiles: {fileID: 1598271856}
+  outSelected: {fileID: 1365269846}
+  palletteUnits: []
+  palletteDir: 
 --- !u!1 &235268154
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,7 +536,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 502956309}
-  - component: {fileID: 502956310}
   m_Layer: 0
   m_Name: Pallette
   m_TagString: Untagged
@@ -541,29 +549,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 502956308}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: -2, z: 2}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1365269849}
-  m_Father: {fileID: 764040153}
-  m_RootOrder: 2
+  m_Children: []
+  m_Father: {fileID: 183324496}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &502956310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 502956308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5c82ed6ea0f2a04599012b96d15d5a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fileDir: unit/blue
-  palletteUnits: []
-  outSelected: {fileID: 1365269846}
-  currentIndex: 0
 --- !u!1 &764040149
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,7 +635,6 @@ Transform:
   m_Children:
   - {fileID: 987557929}
   - {fileID: 183324496}
-  - {fileID: 502956309}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -901,7 +892,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 502956309}
+    m_TransformParent: {fileID: 183324496}
     m_Modifications:
     - target: {fileID: 4879579047151374, guid: 034f26a7c898a6844b24b532f3098465, type: 2}
       propertyPath: m_LocalPosition.x
@@ -933,7 +924,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4879579047151374, guid: 034f26a7c898a6844b24b532f3098465, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 034f26a7c898a6844b24b532f3098465, type: 2}
@@ -948,6 +939,34 @@ Transform:
   m_PrefabParentObject: {fileID: 4879579047151374, guid: 034f26a7c898a6844b24b532f3098465,
     type: 2}
   m_PrefabInternal: {fileID: 1251941705}
+--- !u!1 &1434480326
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1434480327}
+  m_Layer: 0
+  m_Name: units
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1434480327
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1434480326}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 183324496}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1554297788
 GameObject:
   m_ObjectHideFlags: 0
@@ -1058,6 +1077,50 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1 &1598271856
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1598271857}
+  - component: {fileID: 1598271858}
+  m_Layer: 0
+  m_Name: tiles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1598271857
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1598271856}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 183324496}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1598271858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1598271856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b78e9c7e5f279bd4ca8c83aad520b671, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tiles: []
+  xmlData: []
+  xDif: 0
+  yDif: 0
 --- !u!1 &1618109284
 GameObject:
   m_ObjectHideFlags: 0
@@ -1067,8 +1130,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1618109285}
   - component: {fileID: 1618109286}
+  - component: {fileID: 1618109287}
   m_Layer: 5
-  m_Name: AddMoveView
+  m_Name: ButtonView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1114,6 +1178,30 @@ MonoBehaviour:
   objBtnCancel: {fileID: 794987642}
   objPalletteMakerView: {fileID: 502956308}
   objMapSelectView: {fileID: 183324495}
+--- !u!114 &1618109287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1618109284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93eb3b5aac9e1fa4399fcd12e51d4fb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outButtons:
+  - {fileID: 349724412}
+  - {fileID: 2011245366}
+  - {fileID: 1554297788}
+  - {fileID: 852324095}
+  - {fileID: 235268154}
+  - {fileID: 794987642}
+  BUTTON_LEFT: 0
+  BUTTON_UP: 1
+  BUTTON_RIGHT: 2
+  BUTTON_DOWN: 3
+  BUTTON_EXECUTE: 4
+  BUTTON_CANCEL: 5
 --- !u!1 &1792255690
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,16 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿
 
-public class UnitModel : MonoBehaviour {
+public class UnitModel {
+    private int kindId, id, x, y;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public static int UNIT_LAST_ID = 1;
+    public UnitModel(int kindId, int x, int y)
+    {
+        this.kindId = kindId;
+        this.x = x;
+        this.y = y;
+        this.id = UNIT_LAST_ID++;
+    }
+
 }
