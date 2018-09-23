@@ -1,16 +1,17 @@
 ﻿using System;
+using System.Xml;
+using System.Xml.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PalletteMakerView : MonoBehaviour
 {
+    public const string UNITDATA_DIR = "data/units";
     private const int STATUS_1_POS_Y = 0, STATUS_1_POS_MIN_X = 0, STATUS_1_POS_MAX_X = 5;
     private const int STATUS_2_POS_MIN_Y = 2, STATUS_2_POS_MAX_Y = 3, STATUS_2_POS_MIN_X = 0, STATUS_2_POS_MAX_X = 6;
 
     public const int STATUS_TURN_END = 0, STATUS_PALLETTE_SELECT = 1, STATUS_MAP_SELECT = 2, STATUS_UNIT = 3;
-
-    private PalletteData palletteData;
 
     public GameObject outSelected;
     public GameObject outDialog;
@@ -19,31 +20,34 @@ public class PalletteMakerView : MonoBehaviour
     public Dialog cmpDialog;
 
     public int status = 1;
+    public int palletteLength;
 
 	// Use this for initialization
 	void Start () {
-        //palletteUnits = Resources.LoadAll<GameObject>(fileDir);
-        tfSelected = outSelected.transform;
+        this.tfSelected = outSelected.transform;
+        this.palletteLength = XmlLoad();
 
-        //for(int i = 0; i < palletteUnits.Length; i++)
-        //{
-        //    GameObject obj = Instantiate(palletteUnits[i], transform);
-        //    obj.transform.localPosition = new Vector3(i, 0);
-        //}
+        this.tfSelected.localPosition = new Vector3(0, 0);
+        this.cmpDialog = outDialog.GetComponent<Dialog>();
+    }
 
-        palletteData = new PalletteData();
+    public int XmlLoad()
+    {
+        string strUnitArray = Resources.Load<TextAsset>(UNITDATA_DIR).text;
+        XElement xeUnitArray = XElement.Parse(strUnitArray);
+
+        IEnumerable<XElement> iterator = xeUnitArray.Elements();
 
         int i = 0;
-        foreach(GameObject unit in palletteData.GetPalletteUnit())
+        foreach (XElement child in iterator)
         {
+            GameObject unit = Resources.Load<GameObject>("unit/blue/" + child.Element("FileName").Value);
             GameObject obj = Instantiate(unit, transform);
             obj.transform.localPosition = new Vector3(i, 0);
             i++;
         }
 
-        tfSelected.localPosition = new Vector3(0, 0);
-
-        cmpDialog = outDialog.GetComponent<Dialog>();
+        return i;
     }
 
     /// <summary>
@@ -73,9 +77,9 @@ public class PalletteMakerView : MonoBehaviour
 
         if(status == 1)
         {
-            if(pos.y == STATUS_1_POS_Y && pos.x >= STATUS_1_POS_MIN_X && pos.x < palletteData.Length)
+            if(pos.y == STATUS_1_POS_Y && pos.x >= STATUS_1_POS_MIN_X && pos.x < this.palletteLength)
             {
-                tfSelected.localPosition = pos;
+                this.tfSelected.localPosition = pos;
             }
             else
             {
@@ -86,7 +90,7 @@ public class PalletteMakerView : MonoBehaviour
         {
             if (pos.y >= STATUS_2_POS_MIN_Y && pos.y <= STATUS_2_POS_MAX_Y && pos.x >= STATUS_2_POS_MIN_X && pos.x <= STATUS_2_POS_MAX_X)
             {
-                tfSelected.localPosition = pos;
+                this.tfSelected.localPosition = pos;
             }
             else
             {
@@ -105,7 +109,7 @@ public class PalletteMakerView : MonoBehaviour
     public bool AddStatus(int add)
     {
         int changedValue = this.status + add;
-        cmpDialog.Close();
+        this.cmpDialog.Close();
         if(status == STATUS_UNIT && add == -1)
         {
             this.status = changedValue;
@@ -113,32 +117,32 @@ public class PalletteMakerView : MonoBehaviour
         else if (changedValue == STATUS_PALLETTE_SELECT) // 지역 선택 => 팔레트 선택
         {
             this.status = changedValue;
-            tfSelected.localPosition = new Vector3(STATUS_1_POS_MIN_X, STATUS_1_POS_Y);
+            this.tfSelected.localPosition = new Vector3(STATUS_1_POS_MIN_X, STATUS_1_POS_Y);
         }
         else if (changedValue == STATUS_MAP_SELECT) //팔레트 선택 => 지역 선택
         {
             this.status = changedValue;
-            tfSelected.localPosition = new Vector3(STATUS_1_POS_MIN_X, STATUS_2_POS_MIN_Y);
+            this.tfSelected.localPosition = new Vector3(STATUS_1_POS_MIN_X, STATUS_2_POS_MIN_Y);
         }
         else if (changedValue == STATUS_TURN_END) //턴 종료 확인
         {
             this.status = changedValue;
-            cmpDialog.View(Message.END_TURN_CHECK);
+            this.cmpDialog.View(Message.END_TURN_CHECK);
         }
         else if (status == STATUS_TURN_END && add == 1) //턴 종료
         {
             this.status = STATUS_PALLETTE_SELECT;
-            tfSelected.localPosition = new Vector3(STATUS_1_POS_MIN_X, STATUS_1_POS_Y);
+            this.tfSelected.localPosition = new Vector3(STATUS_1_POS_MIN_X, STATUS_1_POS_Y);
         }
         else if (changedValue == STATUS_UNIT) //유닛 배치 확인
         {
             this.status = changedValue;
-            cmpDialog.View(Message.PLACE_UNIT_CHECK);
+            this.cmpDialog.View(Message.PLACE_UNIT_CHECK);
         }
         else if (status == STATUS_UNIT && add == 1) //유닛 배치
         {
             this.status = STATUS_PALLETTE_SELECT;
-            tfSelected.localPosition = new Vector3(STATUS_1_POS_MIN_X, STATUS_1_POS_Y);
+            this.tfSelected.localPosition = new Vector3(STATUS_1_POS_MIN_X, STATUS_1_POS_Y);
         }
         else
         {
