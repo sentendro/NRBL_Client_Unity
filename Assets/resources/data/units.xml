@@ -2,21 +2,62 @@
   <Unit>
     <Name>Store</Name>
     <FileName>1Store</FileName>
+    <Hp>3</Hp>
+    <Price>3</Price>
+    <Gold>1</Gold>
+    <Appendix>
+      <Gold>2</Gold>
+    </Appendix>
   </Unit>
   <Unit>
     <Name>Soldier</Name>
     <FileName>2Soldier</FileName>
+    <Hp>2</Hp>
+    <Price>2</Price>
+    <Food>1</Food>
+    <Attack>1</Attack>
+    <Movable>true</Movable>
   </Unit>
   <Unit>
     <Name>House</Name>
     <FileName>3House</FileName>
+    <Capacity>1</Capacity>
+    <Hp>3</Hp>
+    <Price>3</Price>
+    <Appendix>
+      <Capacity>2</Capacity>
+    </Appendix>
   </Unit>
   <Unit>
     <Name>Castle</Name>
     <FileName>4Castle</FileName>
+    <Hp>4</Hp>
+    <Price>3</Price>
+    <Attack>2</Attack>
+    <AddUnit>
+      <Units>
+        <Unit>
+          <Name>Person</Name>
+          <FileName>6Person</FileName>
+        </Unit>
+      </Units>
+      <Range>2</Range>
+      <CoolTime>2</CoolTime>
+    </AddUnit>
   </Unit>
   <Unit>
     <Name>Magician</Name>
     <FileName>5Magician</FileName>
+    <Hp>1</Hp>
+    <Price>2</Price>
+    <Movable>true</Movable>
+    <Attack>1</Attack>
+    <Food>2</Food>
+    <RangeAttack>
+      <Name>FireBall</Name>
+      <FileName>7FireBall</FileName>
+      <Range>2</Range>
+    </RangeAttack>
+    <PlayerAttack>false</PlayerAttack>
   </Unit>
 </Units>

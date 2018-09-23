@@ -31,6 +31,10 @@ public class PalletteMakerView : MonoBehaviour
         this.cmpDialog = outDialog.GetComponent<Dialog>();
     }
 
+    /// <summary>
+    /// Xml데이터로 저장되어있는 유닛들을 불러옴
+    /// </summary>
+    /// <returns></returns>
     public int XmlLoad()
     {
         string strUnitArray = Resources.Load<TextAsset>(UNITDATA_DIR).text;
