@@ -7,7 +7,7 @@ using UnityEngine;
 public class AutoMapperView : MonoBehaviour {
     public GameObject[] tiles;
     public string[] xmlData;
-    public float xDif = -3.0f, yDif = -4.0f;
+    public float xDif = 0f, yDif = 0f;
 
 	// Use this for initialization
 	void Start () {

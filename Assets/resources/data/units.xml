@@ -1,0 +1,22 @@
+﻿<Units>
+  <Unit>
+    <Name>Store</Name>
+    <FileName>1Store</FileName>
+  </Unit>
+  <Unit>
+    <Name>Soldier</Name>
+    <FileName>2Soldier</FileName>
+  </Unit>
+  <Unit>
+    <Name>House</Name>
+    <FileName>3House</FileName>
+  </Unit>
+  <Unit>
+    <Name>Castle</Name>
+    <FileName>4Castle</FileName>
+  </Unit>
+  <Unit>
+    <Name>Magician</Name>
+    <FileName>5Magician</FileName>
+  </Unit>
+</Units>

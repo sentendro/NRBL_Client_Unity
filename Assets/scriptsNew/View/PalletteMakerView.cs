@@ -3,9 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PalletteMakerView : MonoBehaviour {
-    public string fileDir;
-    public GameObject[] palletteUnits;
+public class PalletteMakerView : MonoBehaviour
+{
+    private const int STATUS_1_POS_Y = 0, STATUS_1_POS_MIN_X = 0, STATUS_1_POS_MAX_X = 5;
+    private const int STATUS_2_POS_MIN_Y = 2, STATUS_2_POS_MAX_Y = 3, STATUS_2_POS_MIN_X = 0, STATUS_2_POS_MAX_X = 6;
+
+    public const int STATUS_TURN_END = 0, STATUS_PALLETTE_SELECT = 1, STATUS_MAP_SELECT = 2, STATUS_UNIT = 3;
+
+    private PalletteData palletteData;
+
     public GameObject outSelected;
     public GameObject outDialog;
 
@@ -13,20 +19,26 @@ public class PalletteMakerView : MonoBehaviour {
     public Dialog cmpDialog;
 
     public int status = 1;
-    private const int STATUS_1_POS_Y = 0, STATUS_1_POS_MIN_X = 0, STATUS_1_POS_MAX_X = 5;
-    private const int STATUS_2_POS_MIN_Y = 2, STATUS_2_POS_MAX_Y = 3, STATUS_2_POS_MIN_X = 0, STATUS_2_POS_MAX_X = 6;
-
-    public const int STATUS_TURN_END = 0, STATUS_PALLETTE_SELECT = 1, STATUS_MAP_SELECT = 2, STATUS_UNIT = 3;
 
 	// Use this for initialization
 	void Start () {
-        palletteUnits = Resources.LoadAll<GameObject>(fileDir);
+        //palletteUnits = Resources.LoadAll<GameObject>(fileDir);
         tfSelected = outSelected.transform;
 
-        for(int i = 0; i < palletteUnits.Length; i++)
+        //for(int i = 0; i < palletteUnits.Length; i++)
+        //{
+        //    GameObject obj = Instantiate(palletteUnits[i], transform);
+        //    obj.transform.localPosition = new Vector3(i, 0);
+        //}
+
+        palletteData = new PalletteData();
+
+        int i = 0;
+        foreach(GameObject unit in palletteData.GetPalletteUnit())
         {
-            GameObject obj = Instantiate(palletteUnits[i], transform);
+            GameObject obj = Instantiate(unit, transform);
             obj.transform.localPosition = new Vector3(i, 0);
+            i++;
         }
 
         tfSelected.localPosition = new Vector3(0, 0);
@@ -61,7 +73,7 @@ public class PalletteMakerView : MonoBehaviour {
 
         if(status == 1)
         {
-            if(pos.y == STATUS_1_POS_Y && pos.x >= STATUS_1_POS_MIN_X && pos.x <= STATUS_1_POS_MAX_X)
+            if(pos.y == STATUS_1_POS_Y && pos.x >= STATUS_1_POS_MIN_X && pos.x < palletteData.Length)
             {
                 tfSelected.localPosition = pos;
             }

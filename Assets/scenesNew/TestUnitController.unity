@@ -230,9 +230,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 183324495}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -8}
+  m_LocalPosition: {x: -3, y: -2.25, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2081077861}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -244,13 +245,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 183324495}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b78e9c7e5f279bd4ca8c83aad520b671, type: 3}
+  m_Script: {fileID: 11500000, guid: 017af483014eb124092c2d77186ace93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tiles: []
   xmlData: []
-  xDif: -3
-  yDif: -2.25
+  xDif: 0
+  yDif: 0
 --- !u!1 &235268154
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,11 +547,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 502956308}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7710adf5e1d867d4eaffd10c72a55ce6, type: 3}
+  m_Script: {fileID: 11500000, guid: 002efa45fbcbf5140a42a0aefed31bf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fileDir: unit/blue
-  palletteUnits: []
   outSelected: {fileID: 1247762795}
   outDialog: {fileID: 607793769}
   tfSelected: {fileID: 0}
@@ -1425,6 +1424,34 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1 &2081077860
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2081077861}
+  m_Layer: 0
+  m_Name: units
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2081077861
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2081077860}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 183324496}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2087060167
 GameObject:
   m_ObjectHideFlags: 0
