@@ -5,9 +5,9 @@
     <Hp>3</Hp>
     <Price>3</Price>
     <Gold>1</Gold>
-    <Appendix>
+    <GrowUp>
       <Gold>2</Gold>
-    </Appendix>
+    </GrowUp>
   </Unit>
   <Unit>
     <Name>Soldier</Name>
@@ -24,9 +24,9 @@
     <Capacity>1</Capacity>
     <Hp>3</Hp>
     <Price>3</Price>
-    <Appendix>
+    <GrowUp>
       <Capacity>2</Capacity>
-    </Appendix>
+    </GrowUp>
   </Unit>
   <Unit>
     <Name>Castle</Name>

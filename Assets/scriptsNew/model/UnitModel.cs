@@ -1,5 +1,6 @@
 ﻿using System.Xml.Linq;
 using System;
+using UnityEngine;
 
 public class UnitModel
 {
@@ -16,9 +17,11 @@ public class UnitModel
     public int Attack { get; set; }
 
     public bool Movable { get; set; }
+    public bool PlayerAttack { get; set; }
 
-    public UnitModel appendix { get; set; } //10턴이 지나면 달라질 모습
-
+    public UnitModel GrowUp { get; set; } //10턴이 지나면 달라질 모습
+    public UnitModel AddUnit { get; set; } //일정 조건에 의해 추가되는 유닛
+    public RangeAttack RangeAttack { get; set; } //장거리 공격
     private UnitModel() { }
 
     public UnitModel(XElement data, int x, int y)
@@ -34,20 +37,44 @@ public class UnitModel
 
         this.Movable = Util.ParseBool(data.Element("Movable"));
 
-        XElement xeAppendix = data.Element("Appendix");
+        XElement xeGrowUp = data.Element("GrowUp");
+        XElement xeAddUnit = data.Element("AddUnit");
+        XElement xeRangeAttack = data.Element("RangeAttack");
 
         //10턴이후 변경 사항 저장
-        if(xeAppendix != null)
+        if(xeGrowUp != null)
         {
-            appendix = new UnitModel();
+            GrowUp = new UnitModel();
 
-            appendix.Hp = Math.Max(Util.ParseInt(xeAppendix.Element("Hp")), this.Hp);
-            appendix.Price = Math.Max(Util.ParseInt(xeAppendix.Element("Price")), this.Price);
-            appendix.Gold = Math.Max(Util.ParseInt(xeAppendix.Element("Gold")), this.Gold);
-            appendix.Capacity = Math.Max(Util.ParseInt(xeAppendix.Element("Capacity")), this.Capacity);
-            appendix.Attack = Math.Max(Util.ParseInt(xeAppendix.Element("Attack")), this.Attack);
+            GrowUp.Hp = Math.Max(Util.ParseInt(xeGrowUp.Element("Hp")), this.Hp);
+            GrowUp.Price = Math.Max(Util.ParseInt(xeGrowUp.Element("Price")), this.Price);
+            GrowUp.Gold = Math.Max(Util.ParseInt(xeGrowUp.Element("Gold")), this.Gold);
+            GrowUp.Capacity = Math.Max(Util.ParseInt(xeGrowUp.Element("Capacity")), this.Capacity);
+            GrowUp.Attack = Math.Max(Util.ParseInt(xeGrowUp.Element("Attack")), this.Attack);
 
-            appendix.Movable = Util.ParseBool(xeAppendix.Element("Movable")) || this.Movable;
+            GrowUp.Movable = Util.ParseBool(xeGrowUp.Element("Movable")) || this.Movable;
+        }
+
+        //일정 조건에 의해 추가되는 유닛
+        if (xeAddUnit != null)
+        {
+            AddUnit = new UnitModel();
+
+            AddUnit.Hp = Math.Max(Util.ParseInt(xeAddUnit.Element("Hp")), this.Hp);
+            AddUnit.Price = Math.Max(Util.ParseInt(xeAddUnit.Element("Price")), this.Price);
+            AddUnit.Gold = Math.Max(Util.ParseInt(xeAddUnit.Element("Gold")), this.Gold);
+            AddUnit.Capacity = Math.Max(Util.ParseInt(xeAddUnit.Element("Capacity")), this.Capacity);
+            AddUnit.Attack = Math.Max(Util.ParseInt(xeAddUnit.Element("Attack")), this.Attack);
+
+            AddUnit.Movable = Util.ParseBool(xeAddUnit.Element("Movable")) || this.Movable;
+        }
+
+        //장거리 공격
+        if(xeRangeAttack != null)
+        {
+            RangeAttack = new RangeAttack();
+            RangeAttack.Prefab = Resources.Load<GameObject>(xeRangeAttack.Element("FileName").Value);
+
         }
     }
 
@@ -65,16 +92,16 @@ public class UnitModel
         result.Attack = this.Attack;
         result.Movable = this.Movable;
 
-        if(appendix != null)
+        if(GrowUp != null)
         {
-            result.appendix = new UnitModel();
+            result.GrowUp = new UnitModel();
 
-            result.appendix.Hp = this.appendix.Hp;
-            result.appendix.Price = this.appendix.Price;
-            result.appendix.Gold = this.appendix.Gold;
-            result.appendix.Capacity = this.appendix.Capacity;
-            result.appendix.Attack = this.appendix.Attack;
-            result.appendix.Movable = this.appendix.Movable;
+            result.GrowUp.Hp = this.GrowUp.Hp;
+            result.GrowUp.Price = this.GrowUp.Price;
+            result.GrowUp.Gold = this.GrowUp.Gold;
+            result.GrowUp.Capacity = this.GrowUp.Capacity;
+            result.GrowUp.Attack = this.GrowUp.Attack;
+            result.GrowUp.Movable = this.GrowUp.Movable;
         }
 
         return result;
