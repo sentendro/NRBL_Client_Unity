@@ -22,7 +22,7 @@ public class Util
         }
         else
         {
-            return xe.Equals("true") ? true : false;
+            return xe.Value.Equals("true") ? true : false;
         }
     }
 }

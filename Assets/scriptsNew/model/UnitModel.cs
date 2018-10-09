@@ -36,6 +36,7 @@ public class UnitModel
         this.Attack = Util.ParseInt(data.Element("Attack"));
 
         this.Movable = Util.ParseBool(data.Element("Movable"));
+        this.PlayerAttack = Util.ParseBool(data.Element("PlayerAttack"));
 
         XElement xeGrowUp = data.Element("GrowUp");
         XElement xeAddUnit = data.Element("AddUnit");
@@ -74,7 +75,7 @@ public class UnitModel
         {
             RangeAttack = new RangeAttack();
             RangeAttack.Prefab = Resources.Load<GameObject>(xeRangeAttack.Element("FileName").Value);
-
+            RangeAttack.Range = int.Parse(xeRangeAttack.Element("Range").Value);
         }
     }
 
