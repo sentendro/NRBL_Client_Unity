@@ -6,7 +6,7 @@ using UnityEngine;
 public class UnitGroupController{
     private const string UNIT_BALANCE_DIR = "data/units";
     private Dictionary<string, XElement> htBalance = new Dictionary<string, XElement>();
-    private List<UnitModel> units = new List<UnitModel>();
+    private List<UnitController> units = new List<UnitController>();
 
     public UnitGroupController()
     {
@@ -20,7 +20,12 @@ public class UnitGroupController{
 
     public void AddUnit(string name, int x, int y)
     {
-        UnitModel model = new UnitModel(htBalance[name], x, y);
-        units.Add(model);
+        UnitController ctlr = new UnitController(htBalance[name], x, y);
+        units.Add(ctlr);
+    }
+
+    public IEnumerator<UnitController> GetEnumerator()
+    {
+        return units.GetEnumerator();
     }
 }

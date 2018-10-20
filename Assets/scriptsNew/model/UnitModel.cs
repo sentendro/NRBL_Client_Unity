@@ -6,9 +6,9 @@ public class UnitModel
 {
     //private int hp = 0, price = 0 , gold = 0, capacity = 0, attack = 0;
     //private bool movable = false;
-
     public int X { get; set; }
     public int Y { get; set; }
+    public int Turn { get; set; }
 
     public int Hp { get; set; }
     public int Price { get; set; }
@@ -21,7 +21,9 @@ public class UnitModel
 
     public UnitModel GrowUp { get; set; } //10턴이 지나면 달라질 모습
     public UnitModel AddUnit { get; set; } //일정 조건에 의해 추가되는 유닛
-    public RangeAttack RangeAttack { get; set; } //장거리 공격
+    public RangeAttackModel RangeAttack { get; set; } //장거리 공격
+    public GameObject Prefab { get; set; }
+
     private UnitModel() { }
 
     public UnitModel(XElement data, int x, int y)
@@ -29,14 +31,17 @@ public class UnitModel
         this.X = x;
         this.Y = y;
 
-        this.Hp = Util.ParseInt(data.Element("Hp"));
-        this.Price = Util.ParseInt(data.Element("Price"));
-        this.Gold = Util.ParseInt(data.Element("Gold"));
-        this.Capacity = Util.ParseInt(data.Element("Capacity"));
-        this.Attack = Util.ParseInt(data.Element("Attack"));
+        this.Hp = Util.ParseInt(data.Element("Hp"), 0);
+        this.Price = Util.ParseInt(data.Element("Price"), 0);
+        this.Gold = Util.ParseInt(data.Element("Gold"), 0);
+        this.Capacity = Util.ParseInt(data.Element("Capacity"), 0);
+        this.Attack = Util.ParseInt(data.Element("Attack"), 0);
+        this.Turn = Util.ParseInt(data.Element("Turn"), -1);
 
-        this.Movable = Util.ParseBool(data.Element("Movable"));
-        this.PlayerAttack = Util.ParseBool(data.Element("PlayerAttack"));
+        this.Movable = Util.ParseBool(data.Element("Movable"), false);
+        this.PlayerAttack = Util.ParseBool(data.Element("PlayerAttack"), false);
+
+        this.Prefab = Resources.Load<GameObject>(data.Element("FileName").Value);
 
         XElement xeGrowUp = data.Element("GrowUp");
         XElement xeAddUnit = data.Element("AddUnit");
@@ -73,7 +78,7 @@ public class UnitModel
         //장거리 공격
         if(xeRangeAttack != null)
         {
-            RangeAttack = new RangeAttack();
+            RangeAttack = new RangeAttackModel();
             RangeAttack.Prefab = Resources.Load<GameObject>(xeRangeAttack.Element("FileName").Value);
             RangeAttack.Range = int.Parse(xeRangeAttack.Element("Range").Value);
         }

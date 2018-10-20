@@ -2,11 +2,11 @@
 
 public class Util
 {
-    public static int ParseInt(XElement xe)
+    public static int ParseInt(XElement xe, int defaultValue = 0)
     {
         if(xe == null)
         {
-            return 0;
+            return defaultValue;
         }
         else
         {
@@ -14,11 +14,11 @@ public class Util
         }
     }
 
-    public static bool ParseBool(XElement xe)
+    public static bool ParseBool(XElement xe, bool defaultValue = false)
     {
         if(xe == null)
         {
-            return false;
+            return defaultValue;
         }
         else
         {

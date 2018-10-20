@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RangeAttack {
+public class RangeAttackModel {
     public GameObject Prefab { get; set; }
     public int Range { get; set; }
 }
