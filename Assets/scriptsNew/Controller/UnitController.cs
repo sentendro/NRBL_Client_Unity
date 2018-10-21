@@ -30,11 +30,22 @@ public class UnitController
         this.model.Hp -= enemyCtlr.model.Attack;
     }
 
-    public void Move(IEnumerator<UnitController> enemies)
+    public void Move(UnitGroupController enemies, int playerDir)
     {
-        if(this.model.Movable)
+        if(this.model.Move > 0)
         {
+            bool canMove = true;
 
+            int changeY = this.model.Y + playerDir * this.model.Move; //플레이어 방향을 고려
+
+            foreach (UnitController enemy in enemies)
+            {
+                if(this.model.X == enemy.model.X && changeY == enemy.model.Y) //이동 후 위치가 해당 적과 같을 경우
+                {
+                    canMove = false;
+
+                }
+            }
         }
     }
 

@@ -15,8 +15,8 @@ public class UnitModel
     public int Gold { get; set; }
     public int Capacity { get; set; }
     public int Attack { get; set; }
-
-    public bool Movable { get; set; }
+    public int Move { get; set; }
+    
     public bool PlayerAttack { get; set; }
 
     public UnitModel GrowUp { get; set; } //10턴이 지나면 달라질 모습
@@ -38,7 +38,7 @@ public class UnitModel
         this.Attack = Util.ParseInt(data.Element("Attack"), 0);
         this.Turn = Util.ParseInt(data.Element("Turn"), -1);
 
-        this.Movable = Util.ParseBool(data.Element("Movable"), false);
+        this.Move = Util.ParseInt(data.Element("Move"), 0);
         this.PlayerAttack = Util.ParseBool(data.Element("PlayerAttack"), false);
 
         this.Prefab = Resources.Load<GameObject>(data.Element("FileName").Value);
@@ -58,7 +58,7 @@ public class UnitModel
             GrowUp.Capacity = Math.Max(Util.ParseInt(xeGrowUp.Element("Capacity")), this.Capacity);
             GrowUp.Attack = Math.Max(Util.ParseInt(xeGrowUp.Element("Attack")), this.Attack);
 
-            GrowUp.Movable = Util.ParseBool(xeGrowUp.Element("Movable")) || this.Movable;
+            GrowUp.Move = Util.ParseInt(xeGrowUp.Element("Move"), this.Move);
         }
 
         //일정 조건에 의해 추가되는 유닛
@@ -72,7 +72,7 @@ public class UnitModel
             AddUnit.Capacity = Math.Max(Util.ParseInt(xeAddUnit.Element("Capacity")), this.Capacity);
             AddUnit.Attack = Math.Max(Util.ParseInt(xeAddUnit.Element("Attack")), this.Attack);
 
-            AddUnit.Movable = Util.ParseBool(xeAddUnit.Element("Movable")) || this.Movable;
+            AddUnit.Move = Util.ParseInt(xeAddUnit.Element("Move"), this.Move);
         }
 
         //장거리 공격
@@ -96,7 +96,7 @@ public class UnitModel
         result.Gold = this.Gold;
         result.Capacity = this.Capacity;
         result.Attack = this.Attack;
-        result.Movable = this.Movable;
+        result.Move = this.Move;
 
         if(GrowUp != null)
         {
@@ -107,7 +107,7 @@ public class UnitModel
             result.GrowUp.Gold = this.GrowUp.Gold;
             result.GrowUp.Capacity = this.GrowUp.Capacity;
             result.GrowUp.Attack = this.GrowUp.Attack;
-            result.GrowUp.Movable = this.GrowUp.Movable;
+            result.GrowUp.Move = this.GrowUp.Move;
         }
 
         return result;
