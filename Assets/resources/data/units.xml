@@ -42,6 +42,9 @@
           <Name>Person</Name>
           <FileName>6Person</FileName>
           <Turn>2</Turn>
+          <Hp>1</Hp>
+          <Move>1</Move>
+          <Attack>1</Attack>
         </Unit>
       </Units>
     </AddUnit>

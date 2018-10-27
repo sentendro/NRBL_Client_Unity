@@ -16,6 +16,7 @@ public class UnitModel
     public int Capacity { get; set; }
     public int Attack { get; set; }
     public int Move { get; set; }
+    public int Food { get; set; }
     
     public bool PlayerAttack { get; set; }
 
@@ -37,6 +38,7 @@ public class UnitModel
         this.Capacity = Util.ParseInt(data.Element("Capacity"), 0);
         this.Attack = Util.ParseInt(data.Element("Attack"), 0);
         this.Turn = Util.ParseInt(data.Element("Turn"), -1);
+        this.Food = Util.ParseInt(data.Element("Food"), 0);
 
         this.Move = Util.ParseInt(data.Element("Move"), 0);
         this.PlayerAttack = Util.ParseBool(data.Element("PlayerAttack"), false);
@@ -57,8 +59,10 @@ public class UnitModel
             GrowUp.Gold = Math.Max(Util.ParseInt(xeGrowUp.Element("Gold")), this.Gold);
             GrowUp.Capacity = Math.Max(Util.ParseInt(xeGrowUp.Element("Capacity")), this.Capacity);
             GrowUp.Attack = Math.Max(Util.ParseInt(xeGrowUp.Element("Attack")), this.Attack);
+            GrowUp.Food = Util.ParseInt(xeGrowUp.Element("Food"), this.Food);
 
             GrowUp.Move = Util.ParseInt(xeGrowUp.Element("Move"), this.Move);
+            GrowUp.Prefab = this.Prefab;
         }
 
         //일정 조건에 의해 추가되는 유닛
@@ -66,13 +70,15 @@ public class UnitModel
         {
             AddUnit = new UnitModel();
 
-            AddUnit.Hp = Math.Max(Util.ParseInt(xeAddUnit.Element("Hp")), this.Hp);
-            AddUnit.Price = Math.Max(Util.ParseInt(xeAddUnit.Element("Price")), this.Price);
-            AddUnit.Gold = Math.Max(Util.ParseInt(xeAddUnit.Element("Gold")), this.Gold);
-            AddUnit.Capacity = Math.Max(Util.ParseInt(xeAddUnit.Element("Capacity")), this.Capacity);
-            AddUnit.Attack = Math.Max(Util.ParseInt(xeAddUnit.Element("Attack")), this.Attack);
+            AddUnit.Hp = Math.Max(Util.ParseInt(xeAddUnit.Element("Hp")), 0);
+            AddUnit.Price = Math.Max(Util.ParseInt(xeAddUnit.Element("Price")), 0);
+            AddUnit.Gold = Math.Max(Util.ParseInt(xeAddUnit.Element("Gold")), 0);
+            AddUnit.Capacity = Math.Max(Util.ParseInt(xeAddUnit.Element("Capacity")), 0);
+            AddUnit.Attack = Math.Max(Util.ParseInt(xeAddUnit.Element("Attack")), 0);
+            AddUnit.Food = Util.ParseInt(xeAddUnit.Element("Food"), 0);
 
-            AddUnit.Move = Util.ParseInt(xeAddUnit.Element("Move"), this.Move);
+            AddUnit.Move = Util.ParseInt(xeAddUnit.Element("Move"), 0);
+            AddUnit.Prefab = Resources.Load<GameObject>(xeAddUnit.Element("FileName").Value);
         }
 
         //장거리 공격
@@ -97,6 +103,8 @@ public class UnitModel
         result.Capacity = this.Capacity;
         result.Attack = this.Attack;
         result.Move = this.Move;
+        result.Food = this.Food;
+        result.Prefab = this.Prefab;
 
         if(GrowUp != null)
         {
@@ -108,6 +116,30 @@ public class UnitModel
             result.GrowUp.Capacity = this.GrowUp.Capacity;
             result.GrowUp.Attack = this.GrowUp.Attack;
             result.GrowUp.Move = this.GrowUp.Move;
+            result.GrowUp.Food = this.GrowUp.Food;
+            result.GrowUp.Prefab = this.GrowUp.Prefab;
+        }
+
+        if(AddUnit != null)
+        {
+            result.AddUnit = new UnitModel();
+
+            result.AddUnit.Hp = this.AddUnit.Hp;
+            result.AddUnit.Price = this.AddUnit.Price;
+            result.AddUnit.Gold = this.AddUnit.Gold;
+            result.AddUnit.Capacity = this.AddUnit.Capacity;
+            result.AddUnit.Attack = this.AddUnit.Attack;
+            result.AddUnit.Move = this.AddUnit.Move;
+            result.AddUnit.Food = this.AddUnit.Food;
+            result.AddUnit.Prefab = this.AddUnit.Prefab;
+        }
+
+        //장거리 공격
+        if (RangeAttack != null)
+        {
+            result.RangeAttack = new RangeAttackModel();
+            result.RangeAttack.Prefab = this.RangeAttack.Prefab;
+            result.RangeAttack.Range = this.RangeAttack.Range;
         }
 
         return result;

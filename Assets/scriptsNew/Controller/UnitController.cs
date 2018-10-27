@@ -18,6 +18,8 @@ public class UnitController
 
     }
 
+    public int Food { get { return model.Food; } }
+
     public bool IsAlive { get { return this.model.Hp > 0; } }
 
     public bool CanPurchase(int playerMoney)
@@ -30,21 +32,50 @@ public class UnitController
         this.model.Hp -= enemyCtlr.model.Attack;
     }
 
-    public void Move(UnitGroupController enemies, int playerDir)
+    /// <summary>
+    /// 이동시 정면에 유닛이 있는지 확인
+    /// </summary>
+    /// <param name="unitList">모든 유닛 배열</param>
+    /// <param name="changeY">이동 후 유닛의 Y좌표</param>
+    public UnitController GetFrontUnit(UnitGroupController unitList, int changeY)
     {
-        if(this.model.Move > 0)
+        foreach (UnitController unit in unitList)
         {
-            bool canMove = true;
+            if (this.model.X == unit.model.X && changeY == unit.model.Y) //이동 후 위치가 해당 유닛과 같을 경우
+            {
+                return unit;
+            }
+        }
 
+        return null;
+    }
+
+    /// <summary>
+    /// 자동 이동 처리(충돌 판정 포함)
+    /// </summary>
+    /// <param name="enemyList">모든 에너미 배열</param>
+    /// <param name="myUnitList">모든 플레이어 유닛 배열</param>
+    /// <param name="playerDir">유닛 이동 방향(위:-1, 아래:1)</param>
+    public void UpdateMove(UnitGroupController enemyList, UnitGroupController myUnitList, int playerDir)
+    {
+        if (this.model.Move > 0)
+        {
             int changeY = this.model.Y + playerDir * this.model.Move; //플레이어 방향을 고려
 
-            foreach (UnitController enemy in enemies)
-            {
-                if(this.model.X == enemy.model.X && changeY == enemy.model.Y) //이동 후 위치가 해당 적과 같을 경우
-                {
-                    canMove = false;
+            UnitController enemy = GetFrontUnit(enemyList, changeY);
+            UnitController myUnit = GetFrontUnit(myUnitList, changeY);
 
-                }
+            if (enemy != null) //바로 앞에 적이 있음. 이동 아닌 공격
+            {
+                enemy.Damage(this);
+            }
+            else if (myUnit != null) //바로 앞에 우리 유닛
+            {
+
+            }
+            else //이동
+            {
+                this.model.Y = changeY;
             }
         }
     }

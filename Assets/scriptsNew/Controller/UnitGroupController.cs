@@ -28,4 +28,12 @@ public class UnitGroupController{
     {
         return units.GetEnumerator();
     }
+
+    public void GetRemainCapacity(UnitModel addUnit)
+    {
+        foreach(UnitController unit in units)
+        {
+            UnitModel model = unit.model
+        }
+    }
 }
