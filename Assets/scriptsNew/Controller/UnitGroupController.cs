@@ -33,7 +33,6 @@ public class UnitGroupController{
     {
         foreach(UnitController unit in units)
         {
-            UnitModel model = unit.model
         }
     }
 }
