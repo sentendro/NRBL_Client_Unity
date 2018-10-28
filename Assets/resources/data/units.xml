@@ -1,16 +1,16 @@
 ﻿<Units>
-  <Unit1>
+  <Store>
     <Name>Store</Name>
     <FileName>1Store</FileName>
     <Hp>3</Hp>
     <Price>3</Price>
     <Gold>1</Gold>
+    <GrowUpTurn>10</GrowUpTurn>
     <GrowUp>
       <AddGold>2</AddGold>
-      <Turn>10</Turn>
     </GrowUp>
-  </Unit1>
-  <Unit2>
+  </Store>
+  <Soldier>
     <Name>Soldier</Name>
     <FileName>2Soldier</FileName>
     <Hp>2</Hp>
@@ -18,38 +18,38 @@
     <Food>1</Food>
     <Attack>1</Attack>
     <Move>1</Move>
-  </Unit2>
-  <Unit3>
+  </Soldier>
+  <House>
     <Name>House</Name>
     <FileName>3House</FileName>
     <Capacity>1</Capacity>
     <Hp>3</Hp>
     <Price>3</Price>
+    <GrowUpTurn>10</GrowUpTurn>
     <GrowUp>
       <Capacity>2</Capacity>
-      <Turn>10</Turn>
     </GrowUp>
-  </Unit3>
-  <Unit4>
+  </House>
+  <Castle>
     <Name>Castle</Name>
     <FileName>4Castle</FileName>
     <Hp>4</Hp>
     <Price>3</Price>
     <Attack>2</Attack>
+    <AddUnitTurn>2</AddUnitTurn>
     <AddUnit>
       <Units>
         <Unit>
           <Name>Person</Name>
           <FileName>6Person</FileName>
-          <Turn>2</Turn>
           <Hp>1</Hp>
           <Move>1</Move>
           <Attack>1</Attack>
         </Unit>
       </Units>
     </AddUnit>
-  </Unit4>
-  <Unit5>
+  </Castle>
+  <Magician>
     <Name>Magician</Name>
     <FileName>5Magician</FileName>
     <Hp>1</Hp>
@@ -63,5 +63,12 @@
       <Range>2</Range>
     </RangeAttack>
     <PlayerAttack>false</PlayerAttack>
-  </Unit5>
+  </Magician>
+  <Person>
+    <Name>Person</Name>
+    <FileName>6Person</FileName>
+    <Hp>1</Hp>
+    <Move>1</Move>
+    <Attack>1</Attack>
+  </Person>
 </Units>

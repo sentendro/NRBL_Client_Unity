@@ -8,6 +8,11 @@ public class UnitController
 {
     private UnitModel model;
 
+    public UnitController(UnitModel model)
+    {
+        this.model = model;
+    }
+
     public UnitController(XElement xeUnit, int x, int y)
     {
         this.model = new UnitModel(xeUnit, x, y);
@@ -80,7 +85,38 @@ public class UnitController
         }
     }
 
+    public void UpdateGrowUpTurn(UnitGroupController myUnitList, int playerDir)
+    {
+        this.model.Turn++;
 
+        if(this.model.GrowUpTurn > 0 && this.model.Turn == this.model.GrowUpTurn)
+        {
+            this.model.BeGrowUp();
+        }
 
+        if(this.model.AddUnitTurn > 0 && this.model.Turn % this.model.AddUnitTurn == 0)
+        {
+            //AddUnit은 여러번 발생
+            int addUnitY = this.model.Y + playerDir * 1; //플레이어 방향을 고려
+
+            //Name으로 처리
+            myUnitList.AddUnit(this.model.AddUnit, this.model.X, addUnitY);
+        }
+    }
+
+    public void UpdateRangeAttack()
+    {
+
+    }
+
+    public void UpdateAddUnit()
+    {
+
+    }
+
+    public void UpdatePlayerAttack()
+    {
+
+    }
 
 }

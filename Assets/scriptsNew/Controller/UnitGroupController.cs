@@ -20,8 +20,15 @@ public class UnitGroupController{
 
     public void AddUnit(string name, int x, int y)
     {
-        UnitController ctlr = new UnitController(htBalance[name], x, y);
+        UnitModel model = new UnitModel(htBalance[name], x, y);
+        AddUnit(model);
+    }
+
+    public void AddUnit(UnitModel model)
+    {
+        UnitController ctlr = new UnitController(model);
         units.Add(ctlr);
+        //여기서 Instantiate도 하는게 좋을 것 같다
     }
 
     public IEnumerator<UnitController> GetEnumerator()
