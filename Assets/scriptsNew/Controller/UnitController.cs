@@ -100,7 +100,7 @@ public class UnitController
             int addUnitY = this.model.Y + playerDir * 1; //플레이어 방향을 고려
 
             //Name으로 처리
-            myUnitList.AddUnit(this.model.AddUnit, this.model.X, addUnitY);
+            myUnitList.AddUnit(this.model.AddUnit.Clone(this.model.X, addUnitY));
         }
     }
 
