@@ -6,6 +6,7 @@ public class UnitModel
 {
     //private int hp = 0, price = 0 , gold = 0, capacity = 0, attack = 0;
     //private bool movable = false;
+    #region 속성, getter, setter
     public int X { get; set; }
     public int Y { get; set; }
     public int Turn { get; set; }
@@ -29,6 +30,9 @@ public class UnitModel
     public RangeAttackModel RangeAttack { get; set; } //장거리 공격
     public GameObject Prefab { get; set; }
 
+    #endregion
+
+    #region 생성자
     private UnitModel() { }
 
     public UnitModel(XElement data, int x, int y)
@@ -36,6 +40,7 @@ public class UnitModel
         this.X = x;
         this.Y = y;
 
+        #region 기본 생성 - 속성
         this.Hp = Util.ParseInt(data.Element("Hp"), 0);
         this.Price = Util.ParseInt(data.Element("Price"), 0);
         this.Gold = Util.ParseInt(data.Element("Gold"), 0);
@@ -55,10 +60,12 @@ public class UnitModel
         XElement xeGrowUp = data.Element("GrowUp");
         XElement xeAddUnit = data.Element("AddUnit");
         XElement xeRangeAttack = data.Element("RangeAttack");
+        #endregion
 
         //10턴이후 변경 사항 저장
         if (xeGrowUp != null)
         {
+            #region 10턴후 변화
             GrowUp = new UnitModel();
 
             GrowUp.Hp = Math.Max(Util.ParseInt(xeGrowUp.Element("Hp")), this.Hp);
@@ -71,11 +78,13 @@ public class UnitModel
             GrowUp.FileName = xeGrowUp.Element("FileName").Value;
             GrowUp.Move = Util.ParseInt(xeGrowUp.Element("Move"), this.Move);
             GrowUp.Prefab = this.Prefab;
+            #endregion
         }
 
         //일정 조건에 의해 추가되는 유닛
         if (xeAddUnit != null)
         {
+            #region 추가 유닛
             AddUnit = new UnitModel();
 
             AddUnit.Hp = Math.Max(Util.ParseInt(xeAddUnit.Element("Hp")), 0);
@@ -88,6 +97,7 @@ public class UnitModel
             AddUnit.FileName = xeAddUnit.Element("FileName").Value;
             AddUnit.Move = Util.ParseInt(xeAddUnit.Element("Move"), 0);
             AddUnit.Prefab = Resources.Load<GameObject>(xeAddUnit.Element("FileName").Value);
+            #endregion
         }
 
         //장거리 공격
@@ -95,10 +105,13 @@ public class UnitModel
         {
             RangeAttack = new RangeAttackModel();
             RangeAttack.Prefab = Resources.Load<GameObject>(xeRangeAttack.Element("FileName").Value);
-            RangeAttack.Range = int.Parse(xeRangeAttack.Element("Range").Value);
+            RangeAttack.Range = Util.ParseInt(xeRangeAttack.Element("Range"), 0);
+            RangeAttack.Attack = Util.ParseInt(xeRangeAttack.Element("Attack"), 0);
         }
     }
+    #endregion
 
+    #region 10턴 이후 진화
     public void BeGrowUp()
     {
         this.Hp = this.GrowUp.Hp;
@@ -109,7 +122,9 @@ public class UnitModel
         this.Food = this.GrowUp.Food;
         this.Prefab = this.GrowUp.Prefab;
     }
+    #endregion
 
+    #region 유닛 복사 Clone(), Clone(x,y)
     public UnitModel Clone()
     {
         return Clone(this.X, this.Y);
@@ -169,4 +184,5 @@ public class UnitModel
 
         return result;
     }
+    #endregion
 }

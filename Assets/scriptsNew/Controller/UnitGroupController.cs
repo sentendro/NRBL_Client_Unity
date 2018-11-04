@@ -18,6 +18,7 @@ public class UnitGroupController{
         }
     }
 
+    #region 유닛 추가, CAPACITY 구하기
     public void AddUnit(string name, int x, int y)
     {
         UnitModel model = new UnitModel(htBalance[name], x, y);
@@ -31,15 +32,21 @@ public class UnitGroupController{
         //여기서 Instantiate도 하는게 좋을 것 같다
     }
 
+    public int GetRemainCapacity(UnitModel addUnit)
+    {
+        int capacitySum = 0;
+
+        foreach (UnitController unit in units)
+        {
+            capacitySum += unit.Capacity;
+        }
+
+        return capacitySum;
+    }
+    #endregion
+
     public IEnumerator<UnitController> GetEnumerator()
     {
         return units.GetEnumerator();
-    }
-
-    public void GetRemainCapacity(UnitModel addUnit)
-    {
-        foreach(UnitController unit in units)
-        {
-        }
     }
 }

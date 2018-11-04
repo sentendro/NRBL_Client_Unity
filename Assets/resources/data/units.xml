@@ -55,14 +55,13 @@
     <Hp>1</Hp>
     <Price>2</Price>
     <Move>1</Move>
-    <Attack>1</Attack>
     <Food>2</Food>
     <RangeAttack>
       <Name>FireBall</Name>
       <FileName>7FireBall</FileName>
       <Range>2</Range>
+      <Attack>1</Attack>
     </RangeAttack>
-    <PlayerAttack>false</PlayerAttack>
   </Magician>
   <Person>
     <Name>Person</Name>

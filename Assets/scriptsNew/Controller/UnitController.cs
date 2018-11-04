@@ -8,6 +8,7 @@ public class UnitController
 {
     private UnitModel model;
 
+    #region 생성자
     public UnitController(UnitModel model)
     {
         this.model = model;
@@ -17,21 +18,24 @@ public class UnitController
     {
         this.model = new UnitModel(xeUnit, x, y);
     }
+    #endregion
 
-    public void UpdateNextTurn()
-    {
-
-    }
-
+    #region 간단한 Getter
     public int Food { get { return model.Food; } }
-
+    public int Capacity { get { return model.Capacity; } }
     public bool IsAlive { get { return this.model.Hp > 0; } }
 
     public bool CanPurchase(int playerMoney)
     {
         return playerMoney >= this.model.Price;
     }
+    #endregion
 
+    #region 정면 이동
+    /// <summary>
+    /// 정면 충돌시 데미지
+    /// </summary>
+    /// <param name="enemyCtlr"></param>
     public void Damage(UnitController enemyCtlr)
     {
         this.model.Hp -= enemyCtlr.model.Attack;
@@ -85,7 +89,26 @@ public class UnitController
         }
     }
 
-    public void UpdateGrowUpTurn(UnitGroupController myUnitList, int playerDir)
+    /// <summary>
+    /// 이동이 끝에 다다를 경우
+    /// </summary>
+    public void UpdatePlayerAttack(UserModel enemy, int playerDir)
+    {
+        if(this.model.Move > 0 && this.model.Attack > 0)
+        {
+            bool caseTop = playerDir < 0 && this.model.X == 0;
+            bool caseBottom = playerDir > 0 && this.model.X == 5;
+
+            if(caseTop || caseBottom)
+            {
+                enemy.Hp -= this.model.Attack;
+            }
+        }
+    }
+    #endregion
+
+    #region 턴관련 처리 (10턴 이후 진화, 유닛 생성)
+    public void UpdateTurn(UnitGroupController myUnitList, int playerDir)
     {
         this.model.Turn++;
 
@@ -103,20 +126,36 @@ public class UnitController
             myUnitList.AddUnit(this.model.AddUnit.Clone(this.model.X, addUnitY));
         }
     }
+    #endregion
 
-    public void UpdateRangeAttack()
+    #region 장거리공격 처리
+    /// <summary>
+    /// 장거리공격 처리
+    /// </summary>
+    /// <param name="enemyList"></param>
+    /// <param name="playerDIr"></param>
+    public void UpdateRangeAttack(UnitGroupController enemyList, int playerDIr)
     {
+        if(this.model.RangeAttack != null)
+        {
+            UnitController enemy = null;
+            //장거리 미사일 발사 공격
+            for (int range = 1; range <= this.model.RangeAttack.Range; range++)
+            {
+                int rangeY = this.model.Y + playerDIr * range;
+                enemy = GetFrontUnit(enemyList, rangeY);
 
+                if(enemy != null) //범위내에서 제일 가까운 유닛 발견
+                {
+                    break;
+                }
+            }
+
+            if(enemy != null)
+            {
+                enemy.Damage(this);
+            }
+        }
     }
-
-    public void UpdateAddUnit()
-    {
-
-    }
-
-    public void UpdatePlayerAttack()
-    {
-
-    }
-
+    #endregion
 }
