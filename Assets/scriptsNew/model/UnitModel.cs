@@ -7,6 +7,7 @@ public class UnitModel
     //private int hp = 0, price = 0 , gold = 0, capacity = 0, attack = 0;
     //private bool movable = false;
     #region 속성, getter, setter
+    public int Id { get; set; }
     public int X { get; set; }
     public int Y { get; set; }
     public int Turn { get; set; }

@@ -97,7 +97,7 @@ public class UnitController
         if(this.model.Move > 0 && this.model.Attack > 0)
         {
             bool caseTop = playerDir < 0 && this.model.X == 0;
-            bool caseBottom = playerDir > 0 && this.model.X == 5;
+            bool caseBottom = playerDir > 0 && this.model.X == 7;
 
             if(caseTop || caseBottom)
             {
