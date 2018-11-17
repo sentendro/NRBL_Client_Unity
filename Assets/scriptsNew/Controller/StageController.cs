@@ -8,11 +8,13 @@ public class StageController
     private UserModel enemy, player;
     private UnitGroupController enemies;
     private UnitGroupController myUnits;
+    private AniQueueController aniQueue;
 
     public StageController()
     {
         this.enemies = new UnitGroupController();
         this.myUnits = new UnitGroupController();
+        this.aniQueue = new AniQueueController();
         this.enemy = new UserModel();
         this.player = new UserModel();
     }
@@ -34,5 +36,15 @@ public class StageController
             unit.UpdatePlayerAttack(player, -1);
             unit.UpdateTurn(enemies, -1);
         }
+    }
+
+    public void AddPlayerUnit(string name, int x, int y)
+    {
+        this.myUnits.AddUnit(name, x, y);
+    }
+
+    public void AddEnemyUnit(string name, int x, int y)
+    {
+        this.enemies.AddUnit(name, x, y);
     }
 }
