@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Xml.Linq;
 using UnityEngine;
 
-public class UnitGroupController{
+public class UnitGroupController {
     private const string UNIT_BALANCE_DIR = "data/units";
     private Dictionary<string, XElement> htBalance = new Dictionary<string, XElement>();
     private List<UnitController> units = new List<UnitController>();
 
     public UnitGroupController()
     {
+        //!!WARNING 로드는 여기서 안됨. 무조건 Start, Awake로 빼야함
         string data = Resources.Load<TextAsset>(UNIT_BALANCE_DIR).text;
         XElement xeData = XElement.Parse(data);
-        foreach (XElement item in xeData.Elements())
+        foreach (XElement item in xeData.Elements()) 
         {
             htBalance.Add(item.Element("Name").Value, item);
         }
@@ -29,6 +30,7 @@ public class UnitGroupController{
     {
         UnitController ctlr = new UnitController(model);
         units.Add(ctlr);
+        Logger.Log(Logger.KEY_UNIT_MAKE, string.Format("unit created x:{0} y:{1} name:{2}", model.X, model.Y, model.FileName));
         //여기서 Instantiate도 하는게 좋을 것 같다
     }
 
