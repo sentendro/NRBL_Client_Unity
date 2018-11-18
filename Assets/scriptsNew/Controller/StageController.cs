@@ -7,14 +7,14 @@ public class StageController
 {
     private UserModel enemy, player;
     private UnitGroupController enemies;
-    private UnitGroupController myUnits;
-    private AniQueueController aniQueue;
+    private UnitGroupController myUnits; 
+    private OrderQueueController aniQueue;
 
     public StageController()
     {
         this.enemies = new UnitGroupController();
         this.myUnits = new UnitGroupController();
-        this.aniQueue = new AniQueueController();
+        this.aniQueue = new OrderQueueController();
         this.enemy = new UserModel();
         this.player = new UserModel();
     }
