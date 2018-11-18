@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AddMoveView : MonoBehaviour {
+public class GamePadView : MonoBehaviour {
     public GameObject objBtnUp, objBtnLeft, objBtnDown, objBtnRight;
     public GameObject objBtnOk, objBtnCancel;
 
     public GameObject objPalletteMakerView;
 
     public Button btnUp, btnLeft, btnDown, btnRight, btnOk, btnCancel;
-    public PalletteMakerView viewPalletteMaker;
+    public InputView viewPalletteMaker;
 
 
 	// Use this for initialization
@@ -23,7 +23,7 @@ public class AddMoveView : MonoBehaviour {
         btnOk = objBtnOk.GetComponent<Button>();
         btnCancel = objBtnCancel.GetComponent<Button>();
 
-        viewPalletteMaker = objPalletteMakerView.GetComponent<PalletteMakerView>();
+        viewPalletteMaker = objPalletteMakerView.GetComponent<InputView>();
 
         btnUp.onClick.AddListener(OnClickUp);
         btnLeft.onClick.AddListener(OnClickLeft);

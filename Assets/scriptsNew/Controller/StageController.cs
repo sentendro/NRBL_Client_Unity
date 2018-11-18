@@ -5,18 +5,15 @@ using System.Text;
 
 public class StageController
 {
-    private UserModel enemy, player;
     private UnitGroupController enemies;
-    private UnitGroupController myUnits; 
-    private OrderQueueController aniQueue;
+    private UnitGroupController myUnits;
+    private OutputController output;
 
-    public StageController()
+    public StageController(OutputController outputController)
     {
-        this.enemies = new UnitGroupController();
-        this.myUnits = new UnitGroupController();
-        this.aniQueue = new OrderQueueController();
-        this.enemy = new UserModel();
-        this.player = new UserModel();
+        this.enemies = new UnitGroupController(this);
+        this.myUnits = new UnitGroupController(this);
+        this.output = outputController;
     }
 
     public void UpdateUnits()
@@ -25,7 +22,7 @@ public class StageController
         {
             unit.UpdateMove(enemies, myUnits, -1);
             unit.UpdateRangeAttack(enemies, -1);
-            unit.UpdatePlayerAttack(enemy, -1);
+            unit.UpdatePlayerAttack(enemies.User, -1);
             unit.UpdateTurn(myUnits, -1);
         }
 
@@ -33,18 +30,13 @@ public class StageController
         {
             unit.UpdateMove(myUnits, enemies, -1);
             unit.UpdateRangeAttack(myUnits, -1);
-            unit.UpdatePlayerAttack(player, -1);
+            unit.UpdatePlayerAttack(myUnits.User, -1);
             unit.UpdateTurn(enemies, -1);
         }
     }
 
-    public void AddPlayerUnit(string name, int x, int y)
+    public void AddUnit(UnitModel model)
     {
-        this.myUnits.AddUnit(name, x, y);
-    }
-
-    public void AddEnemyUnit(string name, int x, int y)
-    {
-        this.enemies.AddUnit(name, x, y);
+        this.output.AddUnit(model);
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-public class InputStateMachine
+public class InputController
 {
     private const int STATUS_1_POS_Y = 0, STATUS_1_POS_MIN_X = 0, STATUS_1_POS_MAX_X = 5;
     private const int STATUS_2_POS_MIN_Y = 2, STATUS_2_POS_MAX_Y = 3, STATUS_2_POS_MIN_X = 0, STATUS_2_POS_MAX_X = 6;
@@ -12,14 +12,14 @@ public class InputStateMachine
 
     private int status = STATUS_PALLETTE_SELECT;
     private int palletteLength = 0;
-    private PalletteMakerView palletteView;
+    private InputView palletteView;
     private StageController stage;
 
-    public InputStateMachine(PalletteMakerView palletteView, int palletteLength)
+    public InputController(InputView palletteView, OutputView outputView, int palletteLength)
     {
         this.palletteView = palletteView;
         this.palletteLength = palletteLength;
-        this.stage = new StageController();
+        this.stage = new StageController(outputView.Controller);
     }
 
     /// <summary>

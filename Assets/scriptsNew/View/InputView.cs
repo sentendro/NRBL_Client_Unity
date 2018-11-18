@@ -5,11 +5,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PalletteMakerView : MonoBehaviour
+public class InputView : MonoBehaviour
 {
     public const string UNITDATA_DIR = "data/units";
-    private InputStateMachine stateMachine;
+    private InputController inputController;
+    private OutputView outputView;
 
+    public GameObject outOutputView;
     public GameObject outSelected;
     public GameObject outDialog;
 
@@ -24,7 +26,8 @@ public class PalletteMakerView : MonoBehaviour
         this.tfSelected.localPosition = new Vector3(0, 0);
         this.cmpDialog = outDialog.GetComponent<Dialog>();
 
-        this.stateMachine = new InputStateMachine(this, palletteLength);
+        this.outputView = outOutputView.GetComponent<OutputView>();
+        this.inputController = new InputController(this, outputView, palletteLength);
     }
 
     /// <summary>
@@ -71,7 +74,7 @@ public class PalletteMakerView : MonoBehaviour
     /// <returns></returns>
     public bool AddMoveSelected(int x, int y)
     {
-        return stateMachine.AddMoveSelected(x, y, tfSelected);
+        return inputController.AddMoveSelected(x, y, tfSelected);
     }
 
     /// <summary>
@@ -81,6 +84,6 @@ public class PalletteMakerView : MonoBehaviour
     /// <returns></returns>
     public bool AddStatus(int add)
     {
-        return stateMachine.AddStatus(add, tfSelected, cmpDialog);
+        return inputController.AddStatus(add, tfSelected, cmpDialog);
     }
 }
