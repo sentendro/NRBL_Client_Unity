@@ -21,21 +21,23 @@ public class InputView : MonoBehaviour
 	// Use this for initialization
 	void Start () {
         this.tfSelected = outSelected.transform;
-        int palletteLength = XmlLoad();
+        GameObject[] palletteUnits = XmlLoad();
 
         this.tfSelected.localPosition = new Vector3(0, 0);
         this.cmpDialog = outDialog.GetComponent<Dialog>();
 
         this.outputView = outOutputView.GetComponent<OutputView>();
-        this.inputController = new InputController(this, outputView, palletteLength);
+        this.inputController = new InputController(this, outputView, palletteUnits);
     }
 
     /// <summary>
     /// Xml데이터로 저장되어있는 유닛들을 불러옴
     /// </summary>
     /// <returns></returns>
-    public int XmlLoad()
+    public GameObject[] XmlLoad()
     {
+        List<GameObject> palletteUnits = new List<GameObject>();
+
         string strUnitArray = Resources.Load<TextAsset>(UNITDATA_DIR).text;
         XElement xeUnitArray = XElement.Parse(strUnitArray);
 
@@ -47,10 +49,12 @@ public class InputView : MonoBehaviour
             GameObject unit = Resources.Load<GameObject>("unit/blue/" + child.Element("FileName").Value);
             GameObject obj = Instantiate(unit, transform);
             obj.transform.localPosition = new Vector3(i, 0);
+            obj.name = child.Element("Name").Value;
+            palletteUnits.Add(obj);
             i++;
         }
 
-        return i;
+        return palletteUnits.ToArray();
     }
 
     /// <summary>

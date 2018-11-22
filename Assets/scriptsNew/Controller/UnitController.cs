@@ -13,11 +13,6 @@ public class UnitController
     {
         this.model = model;
     }
-
-    public UnitController(XElement xeUnit, int x, int y)
-    {
-        this.model = new UnitModel(xeUnit, x, y);
-    }
     #endregion
 
     #region 간단한 Getter

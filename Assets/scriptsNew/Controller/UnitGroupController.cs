@@ -31,10 +31,12 @@ public class UnitGroupController {
     /// <param name="name"></param>
     /// <param name="x"></param>
     /// <param name="y"></param>
-    public void AddUnit(string name, int x, int y)
+    public UnitModel AddUnit(string name, int x, int y)
     {
-        UnitModel model = new UnitModel(htBalance[name], x, y);
+        Logger.Log(Logger.KEY_UNIT_MAKE, string.Format("hashtable check {0}", name));
+        UnitModel model = new UnitModel(htBalance[name], x, y, true);
         AddUnit(model);
+        return model;
     }
     
     /// <summary>

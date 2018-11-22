@@ -25,4 +25,16 @@ public class Util
             return xe.Value.Equals("true") ? true : false;
         }
     }
+
+    public static string GetValueString(XElement xe, string defaultValue = "")
+    {
+        if (xe == null)
+        {
+            return defaultValue;
+        }
+        else
+        {
+            return xe.Value;
+        }
+    }
 }

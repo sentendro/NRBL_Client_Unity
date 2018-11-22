@@ -10,16 +10,17 @@ public class InputController
     private const int STATUS_2_POS_MIN_Y = 2, STATUS_2_POS_MAX_Y = 3, STATUS_2_POS_MIN_X = 0, STATUS_2_POS_MAX_X = 6;
     public const int STATUS_TURN_END = 0, STATUS_PALLETTE_SELECT = 1, STATUS_MAP_SELECT = 2, STATUS_UNIT = 3;
 
+    private GameObject[] palletteUnits;
     private int status = STATUS_PALLETTE_SELECT;
-    private int palletteLength = 0;
     private InputView palletteView;
     private StageController stage;
+    private GameObject selectedUnit = null;
 
-    public InputController(InputView palletteView, OutputView outputView, int palletteLength)
+    public InputController(InputView palletteView, OutputView outputView, GameObject[] palletteUnits)
     {
         this.palletteView = palletteView;
-        this.palletteLength = palletteLength;
         this.stage = new StageController(outputView.Controller);
+        this.palletteUnits = palletteUnits;
     }
 
     /// <summary>
@@ -36,7 +37,7 @@ public class InputController
 
         if (status == 1)
         {
-            if (pos.y == STATUS_1_POS_Y && pos.x >= STATUS_1_POS_MIN_X && pos.x < this.palletteLength)
+            if (pos.y == STATUS_1_POS_Y && pos.x >= STATUS_1_POS_MIN_X && pos.x < this.palletteUnits.Length)
             {
                 tfSelected.localPosition = pos;
             }
@@ -81,6 +82,10 @@ public class InputController
         else if (changedValue == STATUS_MAP_SELECT) //팔레트 선택 => 지역 선택
         {
             this.status = changedValue;
+
+            this.selectedUnit = this.palletteUnits[(int)tfSelected.localPosition.x];//현재 선택한 유닛
+            Logger.Log(Logger.KEY_UNIT_MAKE, string.Format("Selected Unit Index" + tfSelected.localPosition.x));
+
             tfSelected.localPosition = new Vector3(STATUS_1_POS_MIN_X, STATUS_2_POS_MIN_Y);
         }
         else if (changedValue == STATUS_TURN_END) //턴 종료 확인
@@ -101,6 +106,9 @@ public class InputController
         else if (status == STATUS_UNIT && add == 1) //유닛 배치
         {
             this.status = STATUS_PALLETTE_SELECT;
+
+            stage.AddUnit(this.selectedUnit.name, (int)tfSelected.localPosition.x, (int)tfSelected.localPosition.y);
+
             tfSelected.localPosition = new Vector3(STATUS_1_POS_MIN_X, STATUS_1_POS_Y);
         }
         else

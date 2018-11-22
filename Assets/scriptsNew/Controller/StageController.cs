@@ -35,8 +35,12 @@ public class StageController
         }
     }
 
-    public void AddUnit(UnitModel model)
+    public void AddUnit(string name, int x, int y)
     {
-        this.output.AddUnit(model);
+        UnitModel model = this.myUnits.AddUnit(name, x, y);
+
+        Logger.Log(Logger.KEY_UNIT_MAKE, string.Format("Stage UnitModel Is {0}", model));
+
+        output.AddUnit(model);
     }
 }

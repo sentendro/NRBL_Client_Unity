@@ -36,7 +36,7 @@ public class UnitModel
     #region 생성자
     private UnitModel() { }
 
-    public UnitModel(XElement data, int x, int y)
+    public UnitModel(XElement data, int x, int y, bool isMyUnit)
     {
         this.X = x;
         this.Y = y;
@@ -55,8 +55,8 @@ public class UnitModel
         this.Move = Util.ParseInt(data.Element("Move"), 0);
         this.PlayerAttack = Util.ParseBool(data.Element("PlayerAttack"), false);
 
-        this.Prefab = Resources.Load<GameObject>(data.Element("FileName").Value);
-        this.FileName = data.Element("FileName").Value;
+        this.FileName = Util.GetValueString(data.Element("FileName"));
+        this.Prefab = Resources.Load<GameObject>(string.Format("unit/{0}/{1}", isMyUnit? "blue": "red", this.FileName));
 
         XElement xeGrowUp = data.Element("GrowUp");
         XElement xeAddUnit = data.Element("AddUnit");
@@ -76,7 +76,7 @@ public class UnitModel
             GrowUp.Attack = Math.Max(Util.ParseInt(xeGrowUp.Element("Attack")), this.Attack);
             GrowUp.Food = Util.ParseInt(xeGrowUp.Element("Food"), this.Food);
 
-            GrowUp.FileName = xeGrowUp.Element("FileName").Value;
+            GrowUp.FileName = Util.GetValueString(xeGrowUp.Element("FileName"));
             GrowUp.Move = Util.ParseInt(xeGrowUp.Element("Move"), this.Move);
             GrowUp.Prefab = this.Prefab;
             #endregion
@@ -95,9 +95,9 @@ public class UnitModel
             AddUnit.Attack = Math.Max(Util.ParseInt(xeAddUnit.Element("Attack")), 0);
             AddUnit.Food = Util.ParseInt(xeAddUnit.Element("Food"), 0);
 
-            AddUnit.FileName = xeAddUnit.Element("FileName").Value;
+            AddUnit.FileName = Util.GetValueString(xeAddUnit.Element("FileName"));
             AddUnit.Move = Util.ParseInt(xeAddUnit.Element("Move"), 0);
-            AddUnit.Prefab = Resources.Load<GameObject>(xeAddUnit.Element("FileName").Value);
+            AddUnit.Prefab = Resources.Load<GameObject>(AddUnit.FileName);
             #endregion
         }
 
