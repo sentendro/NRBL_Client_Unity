@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Dialog : MonoBehaviour {
+public class DialogView : MonoBehaviour {
     public Text cmpText;
 
 	// Use this for initialization

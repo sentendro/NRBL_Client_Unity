@@ -66,10 +66,10 @@ public class InputController
     /// </summary>
     /// <param name="add"></param>
     /// <returns></returns>
-    public bool AddStatus(int add, Transform tfSelected, Dialog cmpDialog)
+    public bool AddStatus(int add, Transform tfSelected, OutputView outputView)
     {
         int changedValue = this.status + add;
-        cmpDialog.Close();
+        outputView.CloseDialog();
         if (status == STATUS_UNIT && add == -1)
         {
             this.status = changedValue;
@@ -91,7 +91,7 @@ public class InputController
         else if (changedValue == STATUS_TURN_END) //턴 종료 확인
         {
             this.status = changedValue;
-            cmpDialog.View(Message.END_TURN_CHECK);
+            outputView.ViewDialog(Message.END_TURN_CHECK);
         }
         else if (status == STATUS_TURN_END && add == 1) //턴 종료
         {
@@ -101,7 +101,7 @@ public class InputController
         else if (changedValue == STATUS_UNIT) //유닛 배치 확인
         {
             this.status = changedValue;
-            cmpDialog.View(Message.PLACE_UNIT_CHECK);
+            outputView.ViewDialog(Message.PLACE_UNIT_CHECK);
         }
         else if (status == STATUS_UNIT && add == 1) //유닛 배치
         {

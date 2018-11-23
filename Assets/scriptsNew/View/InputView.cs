@@ -13,10 +13,9 @@ public class InputView : MonoBehaviour
 
     public GameObject outOutputView;
     public GameObject outSelected;
-    public GameObject outDialog;
 
     public Transform tfSelected;
-    public Dialog cmpDialog;
+    public DialogView cmpDialog;
 
 	// Use this for initialization
 	void Start () {
@@ -24,7 +23,6 @@ public class InputView : MonoBehaviour
         GameObject[] palletteUnits = XmlLoad();
 
         this.tfSelected.localPosition = new Vector3(0, 0);
-        this.cmpDialog = outDialog.GetComponent<Dialog>();
 
         this.outputView = outOutputView.GetComponent<OutputView>();
         this.inputController = new InputController(this, outputView, palletteUnits);
@@ -88,6 +86,6 @@ public class InputView : MonoBehaviour
     /// <returns></returns>
     public bool AddStatus(int add)
     {
-        return inputController.AddStatus(add, tfSelected, cmpDialog);
+        return inputController.AddStatus(add, tfSelected, outputView);
     }
 }

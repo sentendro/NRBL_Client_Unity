@@ -264,6 +264,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b59969d21f73857419fd02a6b4cb6381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outDialog: {fileID: 607793769}
+  outGage: {fileID: 0}
 --- !u!1 &235268154
 GameObject:
   m_ObjectHideFlags: 0
@@ -564,7 +566,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outOutputView: {fileID: 183324495}
   outSelected: {fileID: 1247762795}
-  outDialog: {fileID: 607793769}
   tfSelected: {fileID: 0}
   cmpDialog: {fileID: 0}
 --- !u!1 &607793769

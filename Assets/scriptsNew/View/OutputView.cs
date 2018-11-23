@@ -8,9 +8,14 @@ public class OutputView : MonoBehaviour
 
     public OutputController Controller { get { return this.outputController; } }
 
+    public GameObject outDialog, outGage;
+    private DialogView dialogView;
+    private GageView gageView;
+
     public void Start()
     {
-        this.outputController = new OutputController(this);    
+        this.outputController = new OutputController(this);
+        this.dialogView = outDialog.GetComponent<DialogView>();
     }
 
     public void AddUnit(UnitModel unit)
@@ -20,8 +25,13 @@ public class OutputView : MonoBehaviour
         gameObject.transform.localPosition = new Vector3(unit.X, unit.Y);
     }
 
-    public void ViewDialog(int reason)
+    public void ViewDialog(string text)
     {
-         
+        dialogView.View(text);
+    }
+
+    public void CloseDialog()
+    {
+        dialogView.Close();
     }
 }
