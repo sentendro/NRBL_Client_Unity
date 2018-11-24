@@ -5,7 +5,7 @@ using System.Text;
 
 public class UserModel
 {
-    public const int DEFAULT_HP = 20, DEFAULT_GOLD = 0;
+    public const int DEFAULT_HP = 20, DEFAULT_GOLD = 5;
     
     public int Gold { get; set; }
     public int Hp { get; set; }

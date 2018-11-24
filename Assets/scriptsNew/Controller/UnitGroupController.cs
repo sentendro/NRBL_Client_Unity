@@ -31,11 +31,11 @@ public class UnitGroupController {
     /// <param name="name"></param>
     /// <param name="x"></param>
     /// <param name="y"></param>
-    public UnitModel AddUnit(string name, int x, int y)
+    public UnitModel GetUnit(string name, int x, int y)
     {
         Logger.Log(Logger.KEY_UNIT_MAKE, string.Format("hashtable check {0}", name));
         UnitModel model = new UnitModel(htBalance[name], x, y, true);
-        AddUnit(model);
+        //AddUnit(model);
         return model;
     }
     
@@ -47,7 +47,10 @@ public class UnitGroupController {
     {
         UnitController ctlr = new UnitController(model);
         units.Add(ctlr);
-        Logger.Log(Logger.KEY_UNIT_MAKE, string.Format("unit created x:{0} y:{1} name:{2}", model.X, model.Y, model.FileName));
+
+        User.Gold -= model.Price;
+
+        Logger.Log(Logger.KEY_UNIT_MAKE, string.Format("unit created x:{0} y:{1} name:{2} price:{3}", model.X, model.Y, model.FileName, model.Price));
     }
 
     /// <summary>

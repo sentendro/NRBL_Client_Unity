@@ -14,6 +14,8 @@ public class StageController
         this.enemies = new UnitGroupController(this);
         this.myUnits = new UnitGroupController(this);
         this.output = outputController;
+
+        output.UpdateGage(this.myUnits.User, this.myUnits);
     }
 
     public void UpdateUnits()
@@ -33,14 +35,36 @@ public class StageController
             unit.UpdatePlayerAttack(myUnits.User, -1);
             unit.UpdateTurn(enemies, -1);
         }
+
+        output.UpdateGage(this.myUnits.User, this.myUnits);
     }
 
-    public void AddUnit(string name, int x, int y)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <returns>Reason</returns>
+    public int AddUnit(string name, int x, int y)
     {
-        UnitModel model = this.myUnits.AddUnit(name, x, y);
+        UnitModel model = this.myUnits.GetUnit(name, x, y);
+        int reason = this.myUnits.CanAddUnit(model);
 
         Logger.Log(Logger.KEY_UNIT_MAKE, string.Format("Stage UnitModel Is {0}", model));
 
-        output.AddUnit(model);
+        if (reason == Reason.ADD_UNIT_SUCCESS)
+        {
+            this.myUnits.AddUnit(model);
+            this.output.AddUnit(model);
+
+            output.UpdateGage(this.myUnits.User, this.myUnits);
+        }
+        else
+        {
+            this.output.ViewDialog(Reason.message[reason]);
+        }
+
+        return reason;
     }
 }

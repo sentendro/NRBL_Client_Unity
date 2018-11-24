@@ -17,8 +17,15 @@ public class OutputController
         this.outputView.AddUnit(model);
     }
 
-    public void ViewDialog(int reason)
+    public void ViewDialog(string text)
     {
+        this.outputView.ViewDialog(text);
+    }
 
+    public void UpdateGage(UserModel user, UnitGroupController unitGroup)
+    {
+        this.outputView.UpdateHpGage(user.Hp);
+        this.outputView.UpdateGoldGage(user.Gold);
+        this.outputView.UpdateFoodData(unitGroup.GetRemainCapacity());
     }
 }

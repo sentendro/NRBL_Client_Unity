@@ -8,7 +8,7 @@ public class InputController
 {
     private const int STATUS_1_POS_Y = 0, STATUS_1_POS_MIN_X = 0, STATUS_1_POS_MAX_X = 5;
     private const int STATUS_2_POS_MIN_Y = 2, STATUS_2_POS_MAX_Y = 3, STATUS_2_POS_MIN_X = 0, STATUS_2_POS_MAX_X = 6;
-    public const int STATUS_TURN_END = 0, STATUS_PALLETTE_SELECT = 1, STATUS_MAP_SELECT = 2, STATUS_UNIT = 3;
+    public const int STATUS_TURN_END = 0, STATUS_PALLETTE_SELECT = 1, STATUS_MAP_SELECT = 2, STATUS_UNIT = 3, STATUS_ERROR_MESSAGE = 4;
 
     private GameObject[] palletteUnits;
     private int status = STATUS_PALLETTE_SELECT;
@@ -78,6 +78,8 @@ public class InputController
         {
             this.status = changedValue;
             tfSelected.localPosition = new Vector3(STATUS_1_POS_MIN_X, STATUS_1_POS_Y);
+
+            Logger.Log(Logger.KEY_KEYPAD_STATUS, "지역 선택 => 팔레트 선택 상태");
         }
         else if (changedValue == STATUS_MAP_SELECT) //팔레트 선택 => 지역 선택
         {
@@ -87,29 +89,54 @@ public class InputController
             Logger.Log(Logger.KEY_UNIT_MAKE, string.Format("Selected Unit Index" + tfSelected.localPosition.x));
 
             tfSelected.localPosition = new Vector3(STATUS_1_POS_MIN_X, STATUS_2_POS_MIN_Y);
+
+            Logger.Log(Logger.KEY_KEYPAD_STATUS, "팔레트 선택 => 지역 선택 상태");
         }
         else if (changedValue == STATUS_TURN_END) //턴 종료 확인
         {
             this.status = changedValue;
             outputView.ViewDialog(Message.END_TURN_CHECK);
+
+            Logger.Log(Logger.KEY_KEYPAD_STATUS, "턴종료확인 상태");
         }
         else if (status == STATUS_TURN_END && add == 1) //턴 종료
         {
             this.status = STATUS_PALLETTE_SELECT;
             tfSelected.localPosition = new Vector3(STATUS_1_POS_MIN_X, STATUS_1_POS_Y);
+
+            Logger.Log(Logger.KEY_KEYPAD_STATUS, "턴종료 상태");
         }
         else if (changedValue == STATUS_UNIT) //유닛 배치 확인
         {
             this.status = changedValue;
             outputView.ViewDialog(Message.PLACE_UNIT_CHECK);
+
+            Logger.Log(Logger.KEY_KEYPAD_STATUS, "유닛확인 상태");
         }
         else if (status == STATUS_UNIT && add == 1) //유닛 배치
         {
+            int reason = stage.AddUnit(this.selectedUnit.name, (int)tfSelected.localPosition.x, (int)tfSelected.localPosition.y);
+
+            if(reason != Reason.ADD_UNIT_SUCCESS)
+            {
+                this.status = STATUS_ERROR_MESSAGE;
+            }
+            else
+            {
+                this.status = STATUS_PALLETTE_SELECT;
+
+                tfSelected.localPosition = new Vector3(STATUS_1_POS_MIN_X, STATUS_1_POS_Y);
+            }
+
+            Logger.Log(Logger.KEY_KEYPAD_STATUS, "유닛배치 상태");
+        }
+        else if(status == STATUS_ERROR_MESSAGE)
+        {
             this.status = STATUS_PALLETTE_SELECT;
 
-            stage.AddUnit(this.selectedUnit.name, (int)tfSelected.localPosition.x, (int)tfSelected.localPosition.y);
-
             tfSelected.localPosition = new Vector3(STATUS_1_POS_MIN_X, STATUS_1_POS_Y);
+
+            Logger.Log(Logger.KEY_KEYPAD_STATUS, "에러 다이얼로그 상태");
         }
         else
         {

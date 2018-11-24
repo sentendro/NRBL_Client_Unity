@@ -82,7 +82,7 @@ public class InputView : MonoBehaviour
     /// <summary>
     /// V, X버튼에 따라 상태를 변경하며 좌표도 자동 변경
     /// </summary>
-    /// <param name="add"></param>
+    /// <param name="add">OK버튼 1, X버튼 -1</param>
     /// <returns></returns>
     public bool AddStatus(int add)
     {

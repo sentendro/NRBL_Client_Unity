@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class Logger
 {
-    public static int KEY_UNIT_MAKE = 1, KEY_UNIT_MANAGE = 2;
-    public static string[] keyMessage = new string[] { "", "KEY_UNIT_MAKE", "KEY_UNIT_MANAGE" };
+    public static int KEY_UNIT_MAKE = 1, KEY_UNIT_MANAGE = 2, KEY_KEYPAD_STATUS = 3;
+    public static string[] keyMessage = new string[] { "", "KEY_UNIT_MAKE", "KEY_UNIT_MANAGE", "키패드" };
 
     public static void Log(int key, string message)
     {

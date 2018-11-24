@@ -12,10 +12,13 @@ public class OutputView : MonoBehaviour
     private DialogView dialogView;
     private GageView gageView;
 
+    public bool IsDialogActive { get { return dialogView.gameObject.activeInHierarchy; } }
+
     public void Start()
     {
         this.outputController = new OutputController(this);
         this.dialogView = outDialog.GetComponent<DialogView>();
+        this.gageView = outGage.GetComponent<GageView>();
     }
 
     public void AddUnit(UnitModel unit)
@@ -27,11 +30,26 @@ public class OutputView : MonoBehaviour
 
     public void ViewDialog(string text)
     {
-        dialogView.View(text);
+        this.dialogView.View(text);
     }
 
     public void CloseDialog()
     {
-        dialogView.Close();
+        this.dialogView.Close();
+    }
+
+    public void UpdateHpGage(int hp)
+    {
+        this.gageView.UpdateHpData(hp);
+    }
+
+    public void UpdateGoldGage(int gold)
+    {
+        this.gageView.UpdateGoldData(gold);
+    }
+
+    public void UpdateFoodData(int food)
+    {
+        this.gageView.UpdateFoodData(food);
     }
 }
