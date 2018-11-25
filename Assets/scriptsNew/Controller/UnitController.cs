@@ -95,6 +95,7 @@ public class UnitController
             else //이동
             {
                 this.model.Y = changeY;
+                Logger.Log(Logger.KEY_UNIT_MANAGE, string.Format("unit move {0} {1}", this.model.Y, playerDir));
             }
         }
     }

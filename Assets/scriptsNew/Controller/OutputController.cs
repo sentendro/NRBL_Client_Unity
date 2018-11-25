@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 public class OutputController
 {
@@ -14,7 +15,8 @@ public class OutputController
 
     public void AddUnit(UnitModel model)
     {
-        this.outputView.AddUnit(model);
+        GameObject gameObject = this.outputView.AddUnit(model);
+        model.GObject = gameObject;
     }
 
     public void ViewDialog(string text)

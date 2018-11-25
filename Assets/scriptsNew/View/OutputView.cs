@@ -21,11 +21,12 @@ public class OutputView : MonoBehaviour
         this.gageView = outGage.GetComponent<GageView>();
     }
 
-    public void AddUnit(UnitModel unit)
+    public GameObject AddUnit(UnitModel unit)
     {
         Logger.Log(Logger.KEY_UNIT_MAKE, "unit created to view : " + unit.Prefab);
         GameObject gameObject = Instantiate(unit.Prefab, transform);
         gameObject.transform.localPosition = new Vector3(unit.X, unit.Y);
+        return gameObject;
     }
 
     public void ViewDialog(string text)

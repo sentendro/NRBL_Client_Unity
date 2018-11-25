@@ -23,10 +23,10 @@ public class StageController
         foreach(UnitController unit in this.myUnits)
         {
             unit.Update(myUnits.User);
-            unit.UpdateMove(enemies, myUnits, -1);
-            unit.UpdateRangeAttack(enemies, -1);
-            unit.UpdatePlayerAttack(enemies.User, -1);
-            unit.UpdateTurn(myUnits, -1);
+            unit.UpdateMove(enemies, myUnits, 1);
+            unit.UpdateRangeAttack(enemies, 1);
+            unit.UpdatePlayerAttack(enemies.User, 1);
+            unit.UpdateTurn(myUnits, 1);
         }
 
         foreach (UnitController unit in this.enemies)

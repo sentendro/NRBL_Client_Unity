@@ -7,6 +7,7 @@ public class UnitModel
     //private int hp = 0, price = 0 , gold = 0, capacity = 0, attack = 0;
     //private bool movable = false;
     #region 속성, getter, setter
+    public static int Identity = 1;
     public int Id { get; set; }
     public int X { get; set; }
     public int Y { get; set; }
@@ -30,6 +31,7 @@ public class UnitModel
     public UnitModel AddUnit { get; set; } //일정 조건에 의해 추가되는 유닛
     public RangeAttackModel RangeAttack { get; set; } //장거리 공격
     public GameObject Prefab { get; set; }
+    public GameObject GObject { get; set; }
 
     #endregion
 
@@ -38,6 +40,7 @@ public class UnitModel
 
     public UnitModel(XElement data, int x, int y, bool isMyUnit)
     {
+        this.Id = UnitModel.Identity++;
         this.X = x;
         this.Y = y;
 
