@@ -87,6 +87,14 @@ public class UnitGroupController {
             return Reason.ADD_UNIT_FOOD;
         }
 
+        foreach(UnitController unit in this.units) //이미 해당위치에 유닛이 존재
+        {
+            if(unit.IsSamePosition(model))
+            {
+                return Reason.ADD_UNIT_POSITION;
+            }
+        }
+
         return Reason.ADD_UNIT_SUCCESS;
     }
     #endregion

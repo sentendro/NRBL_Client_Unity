@@ -22,6 +22,7 @@ public class StageController
     {
         foreach(UnitController unit in this.myUnits)
         {
+            unit.Update(myUnits.User);
             unit.UpdateMove(enemies, myUnits, -1);
             unit.UpdateRangeAttack(enemies, -1);
             unit.UpdatePlayerAttack(enemies.User, -1);
@@ -30,12 +31,14 @@ public class StageController
 
         foreach (UnitController unit in this.enemies)
         {
+            unit.Update(enemies.User);
             unit.UpdateMove(myUnits, enemies, -1);
             unit.UpdateRangeAttack(myUnits, -1);
             unit.UpdatePlayerAttack(myUnits.User, -1);
             unit.UpdateTurn(enemies, -1);
         }
 
+        Logger.Log(Logger.KEY_UNIT_MANAGE, string.Format("User State Hp:{0} Gold:{1} Capacity:{2}", this.myUnits.User.Hp, this.myUnits.User.Gold, this.myUnits.GetRemainCapacity()));
         output.UpdateGage(this.myUnits.User, this.myUnits);
     }
 

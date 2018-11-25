@@ -44,12 +44,15 @@ public class InputView : MonoBehaviour
         int i = 0;
         foreach (XElement child in iterator)
         {
-            GameObject unit = Resources.Load<GameObject>("unit/blue/" + child.Element("FileName").Value);
-            GameObject obj = Instantiate(unit, transform);
-            obj.transform.localPosition = new Vector3(i, 0);
-            obj.name = child.Element("Name").Value;
-            palletteUnits.Add(obj);
-            i++;
+            if(child.Element("Makable").Value.Equals("true"))
+            {
+                GameObject unit = Resources.Load<GameObject>("unit/blue/" + child.Element("FileName").Value);
+                GameObject obj = Instantiate(unit, transform);
+                obj.transform.localPosition = new Vector3(i, 0);
+                obj.name = child.Element("Name").Value;
+                palletteUnits.Add(obj);
+                i++;
+            }
         }
 
         return palletteUnits.ToArray();

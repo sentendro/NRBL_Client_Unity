@@ -69,10 +69,30 @@ public class InputController
     public bool AddStatus(int add, Transform tfSelected, OutputView outputView)
     {
         int changedValue = this.status + add;
+
         outputView.CloseDialog();
+        Logger.Log(Logger.KEY_KEYPAD_STATUS, string.Format("current Status {0} {1}", this.status, changedValue));
+
         if (status == STATUS_UNIT && add == -1)
         {
             this.status = changedValue;
+        }
+        else if (changedValue == STATUS_TURN_END) //턴 종료 확인
+        {
+            this.status = changedValue;
+            outputView.ViewDialog(Message.END_TURN_CHECK);
+
+            Logger.Log(Logger.KEY_KEYPAD_STATUS, "턴종료확인 상태");
+        }
+        else if (status == STATUS_TURN_END && add == 1) //턴 종료
+        {
+            this.status = STATUS_PALLETTE_SELECT;
+
+            this.stage.UpdateUnits();
+
+            tfSelected.localPosition = new Vector3(STATUS_1_POS_MIN_X, STATUS_1_POS_Y);
+
+            Logger.Log(Logger.KEY_KEYPAD_STATUS, "턴종료 상태");
         }
         else if (changedValue == STATUS_PALLETTE_SELECT) // 지역 선택 => 팔레트 선택
         {
@@ -91,20 +111,6 @@ public class InputController
             tfSelected.localPosition = new Vector3(STATUS_1_POS_MIN_X, STATUS_2_POS_MIN_Y);
 
             Logger.Log(Logger.KEY_KEYPAD_STATUS, "팔레트 선택 => 지역 선택 상태");
-        }
-        else if (changedValue == STATUS_TURN_END) //턴 종료 확인
-        {
-            this.status = changedValue;
-            outputView.ViewDialog(Message.END_TURN_CHECK);
-
-            Logger.Log(Logger.KEY_KEYPAD_STATUS, "턴종료확인 상태");
-        }
-        else if (status == STATUS_TURN_END && add == 1) //턴 종료
-        {
-            this.status = STATUS_PALLETTE_SELECT;
-            tfSelected.localPosition = new Vector3(STATUS_1_POS_MIN_X, STATUS_1_POS_Y);
-
-            Logger.Log(Logger.KEY_KEYPAD_STATUS, "턴종료 상태");
         }
         else if (changedValue == STATUS_UNIT) //유닛 배치 확인
         {

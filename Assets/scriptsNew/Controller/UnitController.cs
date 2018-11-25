@@ -24,6 +24,21 @@ public class UnitController
     {
         return playerMoney >= this.model.Price;
     }
+
+    public bool IsSamePosition(UnitModel unit)
+    {
+        return model.X == unit.X && model.Y == unit.Y;
+    }
+    #endregion
+
+    #region 기본 턴처리
+    public void Update(UserModel user)
+    {
+        if(this.model.Gold > 0)
+        {
+            user.Gold += this.model.Gold;
+        }
+    }
     #endregion
 
     #region 정면 이동
@@ -153,4 +168,5 @@ public class UnitController
         }
     }
     #endregion
+
 }
