@@ -1,6 +1,14 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/src/stage/map/Map.prefab.meta
 guid: 070ea28474e1f7e42b6ded863d9bb49c
 PrefabImporter:
+=======
+guid: c134c78ab0422e447bfd09e1dfc1aaa6
+folderAsset: yes
+timeCreated: 1533131907
+licenseType: Free
+DefaultImporter:
+>>>>>>> develop:Assets/scriptsNew/model.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
