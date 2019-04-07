@@ -6,15 +6,10 @@ using UnityEngine;
 // 데미지 받는 기능
 public class Unit : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public int price;
+    public int food;
+    public virtual void TurnUpdate()
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

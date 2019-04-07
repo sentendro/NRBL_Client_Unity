@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoldStore : MonoBehaviour
+public class GoldStore : Unit
 {
-    // Start is called before the first frame update
-    void Start()
+    public Player outPlayer;
+    public int addValue = 1;
+
+    private void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void TurnUpdate()
     {
-        
+        outPlayer.UpdateGoldStoreGold(addValue);
     }
 }

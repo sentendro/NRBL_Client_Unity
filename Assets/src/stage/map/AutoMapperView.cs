@@ -32,6 +32,12 @@ public class AutoMapperView : MonoBehaviour {
             {
                 int tileIdx = rowData[j] - '0';
                 GameObject tileObj = Instantiate(tiles[tileIdx], rowObj.transform);
+
+                if(i == 2 || i == 3)
+                {
+                    tileObj.tag = "placable";
+                }
+
                 tileObj.transform.localPosition = new Vector3(j, 0, 0);
             }
         }
