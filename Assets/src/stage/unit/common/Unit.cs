@@ -8,8 +8,23 @@ public class Unit : MonoBehaviour
 {
     public int price;
     public int food;
+    public TurnChecker inTurnChecker;
+
+    public virtual void OnCreate()
+    {
+        inTurnChecker = GetComponent<TurnChecker>();
+
+        if(inTurnChecker != null)
+        {
+            inTurnChecker.OnUnitCreate();
+        }
+    }
+
     public virtual void TurnUpdate()
     {
-
+        if(inTurnChecker != null)
+        {
+            inTurnChecker.TurnUpdate();
+        }
     }
 }

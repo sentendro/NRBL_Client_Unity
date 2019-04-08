@@ -14,6 +14,7 @@ public class GoldStore : Unit
 
     public override void TurnUpdate()
     {
+        base.TurnUpdate();
         outPlayer.UpdateGoldStoreGold(addValue);
     }
 }

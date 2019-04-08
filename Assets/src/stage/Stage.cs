@@ -10,6 +10,7 @@ public class Stage : MonoBehaviour
 
     public void AddUnit(Unit unit)
     {
+        unit.OnCreate();
         unitList.Add(unit);
     }
 
