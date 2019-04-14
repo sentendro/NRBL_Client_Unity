@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class Magician : Unit
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void TurnUpdate()
     {
-        
-    }
+        base.TurnUpdate();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        transform.Translate(0, 1, 0);
     }
 }

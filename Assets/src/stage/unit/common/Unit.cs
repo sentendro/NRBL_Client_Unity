@@ -10,6 +10,23 @@ public class Unit : MonoBehaviour
     public int food;
     public TurnChecker inTurnChecker;
 
+    public int PlayerPrice
+    {
+        get
+        {
+            return price;
+        }
+    }
+
+    public int PlayerFood
+    {
+        get
+        {
+            return food;
+        }
+    }
+
+
     public virtual void OnCreate()
     {
         inTurnChecker = GetComponent<TurnChecker>();
@@ -26,5 +43,10 @@ public class Unit : MonoBehaviour
         {
             inTurnChecker.TurnUpdate();
         }
+    }
+
+    public virtual void OnDie()
+    {
+        Destroy(inTurnChecker.gameObject);
     }
 }

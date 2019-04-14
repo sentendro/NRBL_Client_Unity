@@ -9,14 +9,58 @@ public class Player : MonoBehaviour
     public Text textGold, textHp, textCapacity, textTimer;
     public Dialog outDialog;
 
+    public int Gold
+    {
+        set
+        {
+            gold = value;
+            textGold.text = "G:" + gold;
+        }
+        get { return gold; }
+    }
+
+    public int Capacity
+    {
+        set
+        {
+            capacity = value;
+            textCapacity.text = "C:" + capacity;
+        }
+        get { return capacity; }
+    }
+
+    public int Hp
+    {
+        set
+        {
+            hp = value;
+            textHp.text = "H:" + hp;
+        }
+        get { return hp; }
+    }
+
+    public int Timer
+    {
+        set
+        {
+            timer = value;
+            textTimer.text = "T:" + timer;
+        }
+        get { return timer; }
+    }
+
     private Coroutine coroutine;
 
     private void Start()
     {
-        textGold.text = gold.ToString();
-        textHp.text = hp.ToString();
-        textCapacity.text = capacity.ToString();
-        textTimer.text = timer.ToString();
+        Gold = Gold;
+        Hp = Hp;
+        Capacity = Capacity;
+        Timer = Timer;
+        //textGold.text = gold.ToString();
+        //textHp.text = hp.ToString();
+        //textCapacity.text = capacity.ToString();
+        //textTimer.text = timer.ToString();
 
         coroutine = StartCoroutine("TimerCount");
     }
@@ -26,26 +70,33 @@ public class Player : MonoBehaviour
         while(timer > 0)
         {
             yield return new WaitForSeconds(2f);
-            timer--;
-            textTimer.text = timer.ToString();
+            Timer--;
+            //textTimer.text = timer.ToString();
         }
     }
 
     public void UpdateGoldStoreGold(int value)
     {
-        gold += value;
-        textGold.text = gold.ToString();
+        Gold += value;
+        //gold += value;
+        //textGold.text = gold.ToString();
+    }
+
+    public void UpdateHouseCapacity(int value)
+    {
+        Capacity += value;
+        //capacity += value;
+        //textCapacity.text = capacity.ToString();
     }
 
     public bool Check(Unit unit)
     {
-        Debug.Log(gold + "/" + unit.price + "/" + capacity + "/" + unit.food);
-        if(gold < unit.price)
+        if(gold < unit.PlayerPrice)
         {
             outDialog.ShowPlayerNotEnoughGold();
             return false;
         }
-        else if(capacity < unit.food)
+        else if(capacity < unit.PlayerFood)
         {
             outDialog.ShowPlayerNotEnoughFood();
             return false;
@@ -56,16 +107,19 @@ public class Player : MonoBehaviour
 
     public void Buy(Unit unit)
     {
-        gold -= unit.price;
-        capacity -= unit.food;
-        textGold.text = gold.ToString();
-        textCapacity.text = capacity.ToString();
+        Gold -= unit.PlayerPrice;
+        Capacity -= unit.PlayerFood;
+        //gold -= unit.PlayerPrice;
+        //capacity -= unit.PlayerFood;
+        //textGold.text = gold.ToString();
+        //textCapacity.text = capacity.ToString();
     }
 
     public void NextTurn()
     {
         StopCoroutine(coroutine);
-        timer = 10;
-        textTimer.text = timer.ToString();
+        Timer = 10;
+        //timer = 10;
+        //textTimer.text = timer.ToString();
     }
 }

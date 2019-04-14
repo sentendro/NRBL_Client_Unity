@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Soldier : Unit
+public class Person : Unit
 {
     public override void TurnUpdate()
     {

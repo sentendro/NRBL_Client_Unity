@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class House : Unit
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Player outPlayer;
+    public int addValue = 3;
 
-    // Update is called once per frame
-    void Update()
+    public override void OnCreate()
     {
-        
+        base.OnCreate();
+        outPlayer.UpdateHouseCapacity(addValue);
     }
 }
