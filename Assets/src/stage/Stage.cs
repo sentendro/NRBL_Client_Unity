@@ -7,6 +7,7 @@ public class Stage : MonoBehaviour
     public Dialog outDialog;
     private List<Unit> unitList = new List<Unit>();
     private NextTurnStatus status = NextTurnStatus.Default;
+    public OffensiveAIEnemy outOffAiEnemy;
 
     public void AddUnit(Unit unit)
     {
@@ -23,9 +24,17 @@ public class Stage : MonoBehaviour
                 status = NextTurnStatus.Check;
                 break;
             case NextTurnStatus.Check:
-                status = NextTurnStatus.Wait;
                 outDialog.Hide();
                 TurnUpdate();
+                if (outOffAiEnemy != null)
+                {
+                    outOffAiEnemy.TurnUpdate();
+                    status = NextTurnStatus.Default;
+                }
+                else
+                {
+                    status = NextTurnStatus.Wait;
+                }
                 break;
             case NextTurnStatus.Wait:
                 status = NextTurnStatus.WaitCheck;

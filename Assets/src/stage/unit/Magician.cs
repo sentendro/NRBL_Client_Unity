@@ -8,6 +8,6 @@ public class Magician : Unit
     {
         base.TurnUpdate();
 
-        transform.Translate(0, 1, 0);
+        GetComponent<Movable>().TurnUpdate();
     }
 }

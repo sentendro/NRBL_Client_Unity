@@ -5,11 +5,21 @@ using UnityEngine;
 public class GoldStore : Unit
 {
     public Player outPlayer;
-    public int addValue = 1;
+    public AIEnemy outAiEnemy;
+    public bool outIsEnemy;
+    public int outAddValue = 1;
 
     public override void TurnUpdate()
     {
         base.TurnUpdate();
-        outPlayer.UpdateGoldStoreGold(addValue);
+
+        if(outIsEnemy)
+        {
+
+        }
+        else
+        {
+            outPlayer.UpdateGoldStoreGold(outAddValue);
+        }
     }
 }

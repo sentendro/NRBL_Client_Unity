@@ -26,6 +26,21 @@ public class Unit : MonoBehaviour
         }
     }
 
+    public int EnemyPrice
+    {
+        get
+        {
+            return price;
+        }
+    }
+
+    public int EnemyFood
+    {
+        get
+        {
+            return food;
+        }
+    }
 
     public virtual void OnCreate()
     {
