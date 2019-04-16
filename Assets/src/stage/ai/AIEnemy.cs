@@ -29,15 +29,25 @@ public class AIEnemy : MonoBehaviour
         return outTfEnemyPallette.Find(key).GetComponent<Unit>();
     }
 
+    public void TurnUpdate()
+    {
+        for (int i = 0; i < unitList.Count; i++)
+        {
+            unitList[i].TurnUpdate();
+        }
+    }
+
     public bool CheckUnit(Unit unit)
     {
         //Debug.Log(gold + "/" + unit.EnemyPrice);
         if(gold < unit.EnemyPrice)
         {
+            Debug.Log("Push Unit Fail Gold" + gold + "/" + unit.EnemyPrice);
             return false;
         }
         else if(capacity < unit.EnemyFood)
         {
+            Debug.Log("Push Unit Fail Capacity" + capacity + "/" + unit.EnemyFood);
             return false;
         }
         return true;
@@ -65,26 +75,65 @@ public class AIEnemy : MonoBehaviour
         unitList.Add(unit);
     }
 
-    public void CreateUnit(GameObject obj, Vector3 position)
+    public Unit CreateUnit(GameObject obj, Vector3 position)
     {
         GameObject newObj = Instantiate(obj, outTfUnitLayer);
         newObj.transform.localPosition = position;
+        return newObj.GetComponent<Unit>();
     }
 
-    public bool PushUnit(string key, Vector3 position)
+    public bool PushRandomUnit(string key, int y)
     {
         Unit unit = GetUnit(key);
         if(CheckUnit(unit))
         {
-            CreateUnit(unit.gameObject, position);
-            AddUnit(unit);
-            Buy(unit);
-            return true;
+            int x = FindBlank(y);
+            if(x >= 0)
+            {
+                Unit newUnit = CreateUnit(unit.gameObject, new Vector3(x, y));
+                AddUnit(newUnit);
+                Buy(newUnit);
+                return true;
+            }
+            else
+            {
+                return false; // 자리가 없음
+            }
         }
         else
         {
-            Debug.Log("Push Unit Fail");
             return false;
         }
+    }
+
+    public int FindBlank(int y)
+    {
+        bool[] xArray = new bool[7];
+
+        for(int i = 0; i < xArray.Length; i++)
+        {
+            xArray[i] = false;
+        }
+
+        foreach (Unit unit in unitList)
+        {
+            Vector3 pos = unit.transform.localPosition;
+            if ((int)pos.y == y)
+            {
+                xArray[(int)pos.x] = true;
+            }
+        }
+
+        int x = -1; // 자리가 없을때는 -1을 반환한다
+        for(int i = 0; i < xArray.Length; i++)
+        {
+            if(xArray[i] == false)
+            {
+                x = i;
+                break;
+            }
+        }
+
+        return x;
     }
 }

@@ -2205,6 +2205,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outDialog: {fileID: 1699091990}
   outOffAiEnemy: {fileID: 709006978}
+  outTfUnitLayer: {fileID: 726151425}
 --- !u!114 &1384974280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3375,11 +3376,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1965073488}
     m_Modifications:
-    - target: {fileID: 2078791913722441210, guid: ba0da332e23d6a24d909d710ed10d220,
-        type: 3}
-      propertyPath: m_Name
-      value: 1Store
-      objectReference: {fileID: 0}
     - target: {fileID: 2077842876137574134, guid: ba0da332e23d6a24d909d710ed10d220,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3434,6 +3430,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2078791913722441210, guid: ba0da332e23d6a24d909d710ed10d220,
+        type: 3}
+      propertyPath: m_Name
+      value: 1Store
       objectReference: {fileID: 0}
     - target: {fileID: 534968686, guid: ba0da332e23d6a24d909d710ed10d220, type: 3}
       propertyPath: outPrefab
