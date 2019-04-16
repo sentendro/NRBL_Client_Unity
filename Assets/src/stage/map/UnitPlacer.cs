@@ -81,6 +81,7 @@ public class UnitPlacer : MonoBehaviour
 
         GameObject objUnit = Instantiate(objPalletteUnit, outTfUnitLayer);
         objUnit.transform.localPosition = position;
+        objUnit.tag = "created";
         Unit unit = objUnit.GetComponent<Unit>();
         
         outStage.AddUnit(unit);

@@ -22,12 +22,18 @@ public class MapSelectView : MonoBehaviour
             Vector2 vector = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Ray2D ray = new Ray2D(vector, Vector2.zero);
             RaycastHit2D[] hits = Physics2D.RaycastAll(ray.origin, ray.direction);
-
+            
             for (int i = 0; i < hits.Length; i++)
             {
                 Collider2D collider = hits[i].collider;
 
-                if (collider.tag.Equals("placable"))
+                Debug.Log(collider.name + "/" + collider.tag);
+
+                if(collider.tag.Equals("created"))
+                {
+                    break;
+                }
+                else if (collider.tag.Equals("placable"))
                 {
                     // 타일인 경우
                     float x = collider.transform.localPosition.x;
