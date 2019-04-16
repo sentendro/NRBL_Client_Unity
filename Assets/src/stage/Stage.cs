@@ -8,6 +8,23 @@ public class Stage : MonoBehaviour
     private List<Unit> unitList = new List<Unit>();
     private NextTurnStatus status = NextTurnStatus.Default;
     public OffensiveAIEnemy outOffAiEnemy;
+    public Transform outTfUnitLayer;
+
+    private void Start()
+    {
+        if(outTfUnitLayer == null)
+        {
+            throw new NoAssignedException(this.GetType() + ".outTfUnitLayer");
+        }
+    }
+
+    public Unit CreateUnit(GameObject obj, Vector3 position)
+    {
+        GameObject newObj = Instantiate(obj, outTfUnitLayer);
+        newObj.transform.localPosition = position;
+        newObj.tag = "created";
+        return newObj.GetComponent<Unit>();
+    }
 
     public void AddUnit(Unit unit)
     {

@@ -31,7 +31,7 @@ public class AIEnemy : MonoBehaviour
 
     public bool CheckUnit(Unit unit)
     {
-        Debug.Log(gold + "/" + unit.EnemyPrice);
+        //Debug.Log(gold + "/" + unit.EnemyPrice);
         if(gold < unit.EnemyPrice)
         {
             return false;

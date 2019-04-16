@@ -78,11 +78,8 @@ public class UnitPlacer : MonoBehaviour
     {
         GameObject objPalletteUnit = outPalletteView.inSelectedUnit;
         Vector3 position = outMapSelectView.inSelectedPosition;
-
-        GameObject objUnit = Instantiate(objPalletteUnit, outTfUnitLayer);
-        objUnit.transform.localPosition = position;
-        objUnit.tag = "created";
-        Unit unit = objUnit.GetComponent<Unit>();
+        
+        Unit unit = outStage.CreateUnit(objPalletteUnit, position);
         
         outStage.AddUnit(unit);
         outPlayer.Buy(unit);
