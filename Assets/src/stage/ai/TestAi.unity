@@ -206,6 +206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   price: 0
   food: 0
+  hp: 0
   inTurnChecker: {fileID: 0}
   outPlayer: {fileID: 0}
   outAiEnemy: {fileID: 709006977}
@@ -403,6 +404,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   price: 0
   food: 0
+  hp: 0
   inTurnChecker: {fileID: 0}
   outPlayer: {fileID: 1384974281}
   outAiEnemy: {fileID: 0}
@@ -710,6 +712,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   price: 1
   food: 1
+  hp: 0
   inTurnChecker: {fileID: 0}
 --- !u!114 &450015890
 MonoBehaviour:
@@ -725,6 +728,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outIsEnemy: 0
   outMoveStep: 1
+  damage: 1
+  outPlayer: {fileID: 1384974281}
+  outAiEnemy: {fileID: 709006977}
+  outStage: {fileID: 1384974279}
 --- !u!1 &534968685
 GameObject:
   m_ObjectHideFlags: 0
@@ -854,6 +861,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   price: 1
   food: 0
+  hp: 0
   inTurnChecker: {fileID: 0}
   outPlayer: {fileID: 1384974281}
   outAiEnemy: {fileID: 0}
@@ -995,7 +1003,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outAiEnemy: {fileID: 709006977}
-  randomX: 0
   maxTurn: 7
 --- !u!114 &712280766 stripped
 MonoBehaviour:
@@ -1134,6 +1141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   price: 0
   food: 0
+  hp: 0
   inTurnChecker: {fileID: 0}
 --- !u!114 &761116155
 MonoBehaviour:
@@ -1149,6 +1157,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outIsEnemy: 0
   outMoveStep: 1
+  damage: 0
+  outPlayer: {fileID: 1384974281}
+  outAiEnemy: {fileID: 709006977}
+  outStage: {fileID: 1384974279}
 --- !u!1 &786449314
 GameObject:
   m_ObjectHideFlags: 0
@@ -1371,6 +1383,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outIsEnemy: 1
   outMoveStep: 1
+  damage: 0
+  outPlayer: {fileID: 1384974281}
+  outAiEnemy: {fileID: 709006977}
+  outStage: {fileID: 1384974279}
 --- !u!114 &888891020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1385,6 +1401,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   price: 0
   food: 0
+  hp: 0
   inTurnChecker: {fileID: 0}
 --- !u!1001 &952325418
 PrefabInstance:
@@ -1480,6 +1497,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outIsEnemy: 1
   outMoveStep: 1
+  damage: 1
+  outPlayer: {fileID: 1384974281}
+  outAiEnemy: {fileID: 709006977}
+  outStage: {fileID: 1384974279}
 --- !u!114 &952325422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1494,6 +1515,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   price: 1
   food: 1
+  hp: 0
   inTurnChecker: {fileID: 0}
 --- !u!1 &957651768
 GameObject:
@@ -1923,6 +1945,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   price: 0
   food: 0
+  hp: 0
   inTurnChecker: {fileID: 0}
   outObjSlave: {fileID: 2099217136}
   outStage: {fileID: 0}
@@ -1978,6 +2001,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   price: 1
   food: 0
+  hp: 0
   inTurnChecker: {fileID: 0}
   outPlayer: {fileID: 0}
   outAiEnemy: {fileID: 709006977}
@@ -2867,6 +2891,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   price: 0
   food: 0
+  hp: 0
   inTurnChecker: {fileID: 0}
 --- !u!114 &1824807527
 MonoBehaviour:
@@ -2882,6 +2907,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outIsEnemy: 0
   outMoveStep: 1
+  damage: 0
+  outPlayer: {fileID: 1384974281}
+  outAiEnemy: {fileID: 709006977}
+  outStage: {fileID: 1384974279}
 --- !u!1 &1862707317 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1592165955062442, guid: 60ad4cf7d98e3d442be4f748fc11e27d,
@@ -2902,6 +2931,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   price: 0
   food: 0
+  hp: 0
   inTurnChecker: {fileID: 0}
   outObjSlave: {fileID: 761116153}
   outStage: {fileID: 1384974279}
@@ -3354,6 +3384,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outIsEnemy: 1
   outMoveStep: 1
+  damage: 0
+  outPlayer: {fileID: 1384974281}
+  outAiEnemy: {fileID: 709006977}
+  outStage: {fileID: 1384974279}
 --- !u!114 &2099217138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3368,6 +3402,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   price: 0
   food: 0
+  hp: 0
   inTurnChecker: {fileID: 0}
 --- !u!1001 &2079127873288655936
 PrefabInstance:

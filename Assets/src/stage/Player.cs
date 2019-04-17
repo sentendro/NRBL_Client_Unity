@@ -89,6 +89,12 @@ public class Player : MonoBehaviour
         //textCapacity.text = capacity.ToString();
     }
 
+    public void UpdateMovableDamage(int damage)
+    {
+        Hp -= damage;
+        Debug.Log("player damage");
+    }
+
     public bool Check(Unit unit)
     {
         if(gold < unit.PlayerPrice)

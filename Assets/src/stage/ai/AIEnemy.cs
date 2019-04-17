@@ -69,6 +69,11 @@ public class AIEnemy : MonoBehaviour
         capacity -= unit.EnemyFood;
     }
 
+    public void UpdateMovableDamage(int damage)
+    {
+        hp -= damage;
+    }
+
     public void AddUnit(Unit unit)
     {
         unit.OnCreate();
@@ -82,12 +87,20 @@ public class AIEnemy : MonoBehaviour
         return newObj.GetComponent<Unit>();
     }
 
+    public void RemoveUnit(Unit unit)
+    {
+        unit.OnDie();
+        unitList.Remove(unit);
+        Destroy(unit.gameObject);
+    }
+
     public bool PushRandomUnit(string key, int y)
     {
         Unit unit = GetUnit(key);
         if(CheckUnit(unit))
         {
             int x = FindBlank(y);
+            Debug.Log(string.Format("aienemy x:{0} y:{1}", x, y));
             if(x >= 0)
             {
                 Unit newUnit = CreateUnit(unit.gameObject, new Vector3(x, y));

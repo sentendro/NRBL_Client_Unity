@@ -9,7 +9,8 @@ public class OffensiveAIEnemy : MonoBehaviour
 
     public void TurnUpdate()
     {
-        Debug.Log("OffensiveAIEnemy TurnUpdate");
+        Debug.Log(string.Format("offensive gold : {0} capacity : {1}", outAiEnemy.Gold, outAiEnemy.Capacity));
+
         if (outAiEnemy.Gold <= 2)
         {
             int buildX = outAiEnemy.FindBlank(8);
@@ -31,15 +32,14 @@ public class OffensiveAIEnemy : MonoBehaviour
         }
 
         int turn = 0;
-        int createX = outAiEnemy.FindBlank(7);
         while (outAiEnemy.PushRandomUnit("Soldier", 7))
         {
             turn++;
+            Debug.Log("offensive turn" + turn);
             if(turn > maxTurn) // 무한루프 방지 용
             {
                 break;
             }
-            createX = outAiEnemy.FindBlank(7);
         }
 
         outAiEnemy.TurnUpdate();

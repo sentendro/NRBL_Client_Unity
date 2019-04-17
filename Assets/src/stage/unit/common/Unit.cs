@@ -8,6 +8,7 @@ public class Unit : MonoBehaviour
 {
     public int price;
     public int food;
+    public int hp;
     public TurnChecker inTurnChecker;
 
     public int PlayerPrice
@@ -62,6 +63,9 @@ public class Unit : MonoBehaviour
 
     public virtual void OnDie()
     {
-        Destroy(inTurnChecker.gameObject);
+        if (inTurnChecker != null)
+        {
+            Destroy(inTurnChecker.gameObject);
+        }
     }
 }

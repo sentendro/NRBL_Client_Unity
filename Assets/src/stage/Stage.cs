@@ -32,6 +32,13 @@ public class Stage : MonoBehaviour
         unitList.Add(unit);
     }
 
+    public void RemoveUnit(Unit unit)
+    {
+        unit.OnDie();
+        unitList.Remove(unit);
+        Destroy(unit.gameObject);
+    }
+
     public void OnNextTurn()
     {
         switch(status)

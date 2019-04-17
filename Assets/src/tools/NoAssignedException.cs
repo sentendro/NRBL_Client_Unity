@@ -9,4 +9,9 @@ public class NoAssignedException : NullReferenceException
     {
 
     }
+
+    public NoAssignedException(object parent, string varName) : base(string.Format("변수가 할당되지 않음 : {0}.{1}", parent.GetType(), varName))
+    {
+
+    }
 }
