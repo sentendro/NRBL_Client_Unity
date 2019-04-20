@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class AIEnemy : MonoBehaviour
 {
-    public Transform outTfEnemyPallette;
-    public Transform outTfUnitLayer;
+    //public Transform outTfEnemyPallette;
+    //public Transform outTfUnitLayer;
     private List<Unit> unitList = new List<Unit>();
     public int gold, hp, capacity;
 
@@ -26,7 +26,9 @@ public class AIEnemy : MonoBehaviour
 
     public Unit GetUnit(string key)
     {
-        return outTfEnemyPallette.Find(key).GetComponent<Unit>();
+        Transform tfEnemyPallette = GameResources.TfEnemyPallette;
+
+        return tfEnemyPallette.Find(key).GetComponent<Unit>();
     }
 
     public void TurnUpdate()
@@ -82,7 +84,9 @@ public class AIEnemy : MonoBehaviour
 
     public Unit CreateUnit(GameObject obj, Vector3 position)
     {
-        GameObject newObj = Instantiate(obj, outTfUnitLayer);
+        Transform tfUnitLayer = GameResources.TfUnitLayer;
+
+        GameObject newObj = Instantiate(obj, tfUnitLayer);
         newObj.transform.localPosition = position;
         return newObj.GetComponent<Unit>();
     }

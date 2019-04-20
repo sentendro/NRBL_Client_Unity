@@ -4,23 +4,17 @@ using UnityEngine;
 
 public class Stage : MonoBehaviour
 {
-    public Dialog outDialog;
     private List<Unit> unitList = new List<Unit>();
     private NextTurnStatus status = NextTurnStatus.Default;
-    public OffensiveAIEnemy outOffAiEnemy;
-    public Transform outTfUnitLayer;
-
-    private void Start()
-    {
-        if(outTfUnitLayer == null)
-        {
-            throw new NoAssignedException(this.GetType() + ".outTfUnitLayer");
-        }
-    }
+    //public Dialog outDialog;
+    //public OffensiveAIEnemy outOffAiEnemy;
+    //public Transform outTfUnitLayer;
 
     public Unit CreateUnit(GameObject obj, Vector3 position)
     {
-        GameObject newObj = Instantiate(obj, outTfUnitLayer);
+        Transform tfUnitLayer = GameResources.TfUnitLayer;
+
+        GameObject newObj = Instantiate(obj, tfUnitLayer);
         newObj.transform.localPosition = position;
         newObj.tag = "created";
         return newObj.GetComponent<Unit>();
@@ -41,18 +35,21 @@ public class Stage : MonoBehaviour
 
     public void OnNextTurn()
     {
+        Dialog dialog = GameResources.Dialog;
+        OffensiveAIEnemy offAiEnemy = GameResources.OffensiveAIEnemy;
+
         switch(status)
         {
             case NextTurnStatus.Default:
-                outDialog.ShowStageNextTurn();
+                dialog.ShowStageNextTurn();
                 status = NextTurnStatus.Check;
                 break;
             case NextTurnStatus.Check:
-                outDialog.Hide();
+                dialog.Hide();
                 TurnUpdate();
-                if (outOffAiEnemy != null)
+                if (offAiEnemy != null)
                 {
-                    outOffAiEnemy.TurnUpdate();
+                    offAiEnemy.TurnUpdate();
                     status = NextTurnStatus.Default;
                 }
                 else
@@ -62,11 +59,11 @@ public class Stage : MonoBehaviour
                 break;
             case NextTurnStatus.Wait:
                 status = NextTurnStatus.WaitCheck;
-                outDialog.ShowStageWait();
+                dialog.ShowStageWait();
                 break;
             case NextTurnStatus.WaitCheck:
                 status = NextTurnStatus.Default;
-                outDialog.Hide();
+                dialog.Hide();
                 break;
         }
     }

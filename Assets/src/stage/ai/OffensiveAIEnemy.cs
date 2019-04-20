@@ -4,35 +4,37 @@ using UnityEngine;
 
 public class OffensiveAIEnemy : MonoBehaviour
 {
-    public AIEnemy outAiEnemy;
+    //public AIEnemy outAiEnemy;
     public int maxTurn = 7;
 
     public void TurnUpdate()
     {
-        Debug.Log(string.Format("offensive gold : {0} capacity : {1}", outAiEnemy.Gold, outAiEnemy.Capacity));
+        AIEnemy aiEnemy = GameResources.AIEnemy;
 
-        if (outAiEnemy.Gold <= 2)
+        Debug.Log(string.Format("offensive gold : {0} capacity : {1}", aiEnemy.Gold, aiEnemy.Capacity));
+
+        if (aiEnemy.Gold <= 2)
         {
-            int buildX = outAiEnemy.FindBlank(8);
+            int buildX = aiEnemy.FindBlank(8);
 
             if(buildX >= 0)
             {
-                outAiEnemy.PushRandomUnit("Store", 8);
+                aiEnemy.PushRandomUnit("Store", 8);
             }
         }
 
-        if(outAiEnemy.Capacity <= 1)
+        if(aiEnemy.Capacity <= 1)
         {
-            int buildX = outAiEnemy.FindBlank(8);
+            int buildX = aiEnemy.FindBlank(8);
 
             if (buildX >= 0)
             {
-                outAiEnemy.PushRandomUnit("House", 8);
+                aiEnemy.PushRandomUnit("House", 8);
             }
         }
 
         int turn = 0;
-        while (outAiEnemy.PushRandomUnit("Soldier", 7))
+        while (aiEnemy.PushRandomUnit("Soldier", 7))
         {
             turn++;
             Debug.Log("offensive turn" + turn);
@@ -42,6 +44,6 @@ public class OffensiveAIEnemy : MonoBehaviour
             }
         }
 
-        outAiEnemy.TurnUpdate();
+        aiEnemy.TurnUpdate();
     }
 }

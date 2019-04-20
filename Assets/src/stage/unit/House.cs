@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class House : Unit
 {
-    public Player outPlayer;
-    public AIEnemy outAiEnemy;
+    //public Player outPlayer;
+    //public AIEnemy outAiEnemy;
     public bool outIsEnemy;
     public int outAddValue = 3;
 
@@ -19,15 +19,18 @@ public class House : Unit
 
     public override void OnCreate()
     {
+        AIEnemy aiEnemy = GameResources.AIEnemy;
+        Player player = GameResources.Player;
+
         base.OnCreate();
 
         if(outIsEnemy)
         {
-            outAiEnemy.UpdateHouseCapacity(outAddValue);
+            aiEnemy.UpdateHouseCapacity(outAddValue);
         }
         else
         {
-            outPlayer.UpdateHouseCapacity(outAddValue);
+            player.UpdateHouseCapacity(outAddValue);
         }
     }
 }

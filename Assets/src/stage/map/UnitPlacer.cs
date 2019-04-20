@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class UnitPlacer : MonoBehaviour
 {
-    public PalletteView outPalletteView;
-    public MapSelectView outMapSelectView;
-    public Dialog outDialog;
-    public Transform outTfUnitLayer;
-    public Stage outStage;
-    public Player outPlayer;
+    //public PalletteView outPalletteView;
+    //public MapSelectView outMapSelectView;
+    //public Dialog outDialog;
+    //public Transform outTfUnitLayer;
+    //public Stage outStage;
+    //public Player outPlayer;
     public PlaceStatus status = PlaceStatus.Default;
 
     /// <summary>
@@ -17,22 +17,24 @@ public class UnitPlacer : MonoBehaviour
     /// </summary>
     public void OnOk()
     {
+        Dialog dialog = GameResources.Dialog;
+
         switch (status)
         {
             case PlaceStatus.Default:
                 if (Check())
                 {
-                    outDialog.ShowUnitPlacerCheck();
+                    dialog.ShowUnitPlacerCheck();
                     status = PlaceStatus.Check;
                 }
                 break;
             case PlaceStatus.Check:
-                outDialog.Hide();
+                dialog.Hide();
                 status = PlaceStatus.Default;
                 Place();
                 break;
             case PlaceStatus.Fail:
-                outDialog.Hide();
+                dialog.Hide();
                 status = PlaceStatus.Default;
                 break;
         }
@@ -43,26 +45,28 @@ public class UnitPlacer : MonoBehaviour
     /// </summary>
     public void OnCancel()
     {
+        Dialog dialog = GameResources.Dialog;
+
         switch (status)
         {
             case PlaceStatus.Default:
                 break;
             case PlaceStatus.Check:
-                outDialog.Hide();
+                dialog.Hide();
                 status = PlaceStatus.Default;
                 break;
             case PlaceStatus.Fail:
-                outDialog.Hide();
+                dialog.Hide();
                 break;
         }
     }
 
     public bool Check()
     {
-        PalletteView palletteView = StageResource.PalletteView;
-        MapSelectView mapSelectView = StageResource.MapSelectView;
-        Player player = StageResource.Player;
-        Dialog dialog = StageResource.Dialog;
+        PalletteView palletteView = GameResources.PalletteView;
+        MapSelectView mapSelectView = GameResources.MapSelectView;
+        Player player = GameResources.Player;
+        Dialog dialog = GameResources.Dialog;
 
         if (palletteView.UnitPlacerSelectedUnit() == null)
         {
@@ -87,10 +91,10 @@ public class UnitPlacer : MonoBehaviour
 
     public void Place()
     {
-        PalletteView palletteView = StageResource.PalletteView;
-        MapSelectView mapSelectView = StageResource.MapSelectView;
-        Player player = StageResource.Player;
-        Stage stage = StageResource.Stage;
+        PalletteView palletteView = GameResources.PalletteView;
+        MapSelectView mapSelectView = GameResources.MapSelectView;
+        Player player = GameResources.Player;
+        Stage stage = GameResources.Stage;
 
         Unit palletteUnit = palletteView.UnitPlacerSelectedUnit();
         Vector3 position = mapSelectView.UnitPlacerSelectedPosition();

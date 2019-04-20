@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 {
     public int gold, hp, capacity, timer;
     public Text textGold, textHp, textCapacity, textTimer;
-    public Dialog outDialog;
+    //public Dialog outDialog;
 
     public int Gold
     {
@@ -97,14 +97,16 @@ public class Player : MonoBehaviour
 
     public bool Check(Unit unit)
     {
+        Dialog dialog = GameResources.Dialog;
+
         if(gold < unit.PlayerPrice)
         {
-            outDialog.ShowPlayerNotEnoughGold();
+            dialog.ShowPlayerNotEnoughGold();
             return false;
         }
         else if(capacity < unit.PlayerFood)
         {
-            outDialog.ShowPlayerNotEnoughFood();
+            dialog.ShowPlayerNotEnoughFood();
             return false;
         }
 
