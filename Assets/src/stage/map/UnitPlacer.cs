@@ -12,6 +12,9 @@ public class UnitPlacer : MonoBehaviour
     public Player outPlayer;
     public PlaceStatus status = PlaceStatus.Default;
 
+    /// <summary>
+    /// 'V' 버튼을 눌렀을때 발생
+    /// </summary>
     public void OnOk()
     {
         switch (status)
@@ -35,6 +38,9 @@ public class UnitPlacer : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 'X' 버튼을 눌렀을때 발생
+    /// </summary>
     public void OnCancel()
     {
         switch (status)
@@ -53,19 +59,24 @@ public class UnitPlacer : MonoBehaviour
 
     public bool Check()
     {
-        if (outPalletteView.inSelectedUnit == null)
+        PalletteView palletteView = StageResource.PalletteView;
+        MapSelectView mapSelectView = StageResource.MapSelectView;
+        Player player = StageResource.Player;
+        Dialog dialog = StageResource.Dialog;
+
+        if (palletteView.UnitPlacerSelectedUnit() == null)
         {
-            outDialog.ShowUnitPlacerNoSelectUnit();
+            dialog.ShowUnitPlacerNoSelectUnit();
             status = PlaceStatus.Fail;
             return false;
         }
-        else if (outMapSelectView.inSelectedTIle == null)
+        else if (mapSelectView.UnitPlacerSelectedTile() == null)
         {
-            outDialog.ShowUnitPlacerNoSelectTile();
+            dialog.ShowUnitPlacerNoSelectTile();
             status = PlaceStatus.Fail;
             return false;
         }
-        else if(outPlayer.Check(outPalletteView.inSelectedUnit.GetComponent<Unit>()) == false)
+        else if(player.Check(palletteView.UnitPlacerSelectedUnit()) == false)
         {
             status = PlaceStatus.Fail;
             return false;
@@ -76,16 +87,21 @@ public class UnitPlacer : MonoBehaviour
 
     public void Place()
     {
-        GameObject objPalletteUnit = outPalletteView.inSelectedUnit;
-        Vector3 position = outMapSelectView.inSelectedPosition;
-        
-        Unit unit = outStage.CreateUnit(objPalletteUnit, position);
-        
-        outStage.AddUnit(unit);
-        outPlayer.Buy(unit);
+        PalletteView palletteView = StageResource.PalletteView;
+        MapSelectView mapSelectView = StageResource.MapSelectView;
+        Player player = StageResource.Player;
+        Stage stage = StageResource.Stage;
 
-        outPalletteView.HideSelectedUI();
-        outMapSelectView.HideSelectedUI();
+        Unit palletteUnit = palletteView.UnitPlacerSelectedUnit();
+        Vector3 position = mapSelectView.UnitPlacerSelectedPosition();
+        
+        Unit unit = stage.CreateUnit(palletteUnit.gameObject, position);
+        
+        stage.AddUnit(unit);
+        player.Buy(unit);
+
+        palletteView.HideSelectedUI();
+        mapSelectView.HideSelectedUI();
     }
 
     public enum PlaceStatus

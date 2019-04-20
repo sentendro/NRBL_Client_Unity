@@ -37,4 +37,12 @@ public class Util
             return xe.Value;
         }
     }
+
+    public static void CheckNoAssignException<T>(object obj, T variable)
+    {
+        if(variable == null)
+        {
+            throw new NoAssignedException(obj, typeof(T).Name);
+        }
+    }
 }

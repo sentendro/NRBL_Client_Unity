@@ -52,4 +52,14 @@ public class MapSelectView : MonoBehaviour
         outSelectedUI.SetActive(false);
         inSelectedTIle = null;
     }
+
+    public GameObject UnitPlacerSelectedTile()
+    {
+        return inSelectedTIle;
+    }
+
+    public Vector3 UnitPlacerSelectedPosition()
+    {
+        return inSelectedPosition;
+    }
 }

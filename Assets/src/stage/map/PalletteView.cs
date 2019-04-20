@@ -40,4 +40,16 @@ public class PalletteView : MonoBehaviour
         outSelectedUI.SetActive(false);
         inSelectedUnit = null;
     }
+
+    public Unit UnitPlacerSelectedUnit()
+    {
+        if(inSelectedUnit == null)
+        {
+            return null;
+        }
+        else
+        {
+            return inSelectedUnit.GetComponent<Unit>();
+        }
+    }
 }

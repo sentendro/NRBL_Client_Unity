@@ -2190,6 +2190,7 @@ GameObject:
   - component: {fileID: 1384974280}
   - component: {fileID: 1384974279}
   - component: {fileID: 1384974281}
+  - component: {fileID: 1384974282}
   m_Layer: 0
   m_Name: Stage
   m_TagString: Untagged
@@ -2270,6 +2271,18 @@ MonoBehaviour:
   textCapacity: {fileID: 237702422}
   textTimer: {fileID: 1240810535}
   outDialog: {fileID: 1699091990}
+--- !u!114 &1384974282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384974277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 904f63852280e3944b7f0a0e42ebef81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1435745241
 GameObject:
   m_ObjectHideFlags: 0
@@ -2722,7 +2735,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1699091987
 RectTransform:
   m_ObjectHideFlags: 0
