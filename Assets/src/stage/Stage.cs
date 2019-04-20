@@ -4,33 +4,20 @@ using UnityEngine;
 
 public class Stage : MonoBehaviour
 {
-    private List<Unit> unitList = new List<Unit>();
+    private UnitList unitList = new UnitList();
     private NextTurnStatus status = NextTurnStatus.Default;
-    //public Dialog outDialog;
-    //public OffensiveAIEnemy outOffAiEnemy;
-    //public Transform outTfUnitLayer;
 
     public Unit CreateUnit(GameObject obj, Vector3 position)
     {
-        Transform tfUnitLayer = GameResources.TfUnitLayer;
+        Player player = GameResources.Player;
+        Unit unit = unitList.CreateUnit(obj, position);
 
-        GameObject newObj = Instantiate(obj, tfUnitLayer);
-        newObj.transform.localPosition = position;
-        newObj.tag = "created";
-        return newObj.GetComponent<Unit>();
-    }
-
-    public void AddUnit(Unit unit)
-    {
-        unit.OnCreate();
-        unitList.Add(unit);
+        return unit;
     }
 
     public void RemoveUnit(Unit unit)
     {
-        unit.OnDie();
-        unitList.Remove(unit);
-        Destroy(unit.gameObject);
+        unitList.RemoveUnit(unit);
     }
 
     public void OnNextTurn()
@@ -70,10 +57,7 @@ public class Stage : MonoBehaviour
 
     public void TurnUpdate()
     {
-        for(int i = 0; i < unitList.Count; i++)
-        {
-            unitList[i].TurnUpdate();
-        }
+        unitList.TurnUpdate();
     }
 
     public enum NextTurnStatus

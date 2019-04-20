@@ -27,7 +27,7 @@ public class MapSelectView : MonoBehaviour
             {
                 Collider2D collider = hits[i].collider;
 
-                Debug.Log(collider.name + "/" + collider.tag);
+                Logger.Log("MapSelectView", collider.name, collider.tag);
 
                 if(collider.tag.Equals("created")) // 해당 타일에 이미 유닛이 존재
                 {

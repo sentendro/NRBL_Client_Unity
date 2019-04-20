@@ -101,7 +101,6 @@ public class UnitPlacer : MonoBehaviour
         
         Unit unit = stage.CreateUnit(palletteUnit.gameObject, position);
         
-        stage.AddUnit(unit);
         player.Buy(unit);
 
         palletteView.HideSelectedUI();

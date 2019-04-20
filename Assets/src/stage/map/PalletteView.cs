@@ -26,6 +26,7 @@ public class PalletteView : MonoBehaviour
 
                 if(collider.tag.Equals("pallette"))
                 {
+                    Logger.Log("PalletteView", collider.name, collider.tag);
                     // 팔레트 유닛인 경우
                     outSelectedUI.transform.localPosition = collider.transform.localPosition;
                     outSelectedUI.SetActive(true);

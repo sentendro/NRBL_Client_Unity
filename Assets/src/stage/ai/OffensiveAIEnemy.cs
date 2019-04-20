@@ -11,7 +11,7 @@ public class OffensiveAIEnemy : MonoBehaviour
     {
         AIEnemy aiEnemy = GameResources.AIEnemy;
 
-        Debug.Log(string.Format("offensive gold : {0} capacity : {1}", aiEnemy.Gold, aiEnemy.Capacity));
+        Logger.Log("OffensiveAIEnemy", "gold", aiEnemy.Gold, "capacity", aiEnemy.Capacity);
 
         if (aiEnemy.Gold <= 2)
         {
@@ -19,7 +19,7 @@ public class OffensiveAIEnemy : MonoBehaviour
 
             if(buildX >= 0)
             {
-                aiEnemy.PushRandomUnit("Store", 8);
+                aiEnemy.PushRandomUnit("1Store", 8);
             }
         }
 
@@ -29,15 +29,15 @@ public class OffensiveAIEnemy : MonoBehaviour
 
             if (buildX >= 0)
             {
-                aiEnemy.PushRandomUnit("House", 8);
+                aiEnemy.PushRandomUnit("3House", 8);
             }
         }
 
         int turn = 0;
-        while (aiEnemy.PushRandomUnit("Soldier", 7))
+        while (aiEnemy.PushRandomUnit("2Soldier", 7))
         {
             turn++;
-            Debug.Log("offensive turn" + turn);
+            Logger.Log("OffensiveAiEnemy", "turn", turn);
             if(turn > maxTurn) // 무한루프 방지 용
             {
                 break;

@@ -13,4 +13,40 @@ public class Logger
     {
         Debug.Log(string.Format("[{0}] {1}", keyMessage[key], message));
     }
+
+    public static void Log(string key, params object[] args)
+    {
+        StringBuilder sb = new StringBuilder();
+
+        for(int i = 0; i < args.Length; i++)
+        {
+            sb.Append(args[i]);
+
+            if(i != args.Length - 1)
+            {
+                sb.Append("-");
+            }
+        }        
+
+        Debug.Log(string.Format("[{0}] {1}", key, sb.ToString()));
+    }
+
+    public static void LogTable(string key, params object[] args)
+    {
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < args.Length; i += 2)
+        {
+            sb.Append(args[i]);
+            sb.Append(":");
+            sb.Append(args[i + 1]);
+
+            if (i != args.Length - 1)
+            {
+                sb.Append(",");
+            }
+        }
+
+        Debug.Log(string.Format("[{0}] {1}", key, sb.ToString()));
+    }
 }

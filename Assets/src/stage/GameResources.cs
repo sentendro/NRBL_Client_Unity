@@ -15,6 +15,9 @@ public class GameResources : MonoBehaviour
 
     public static Transform TfUnitLayer { get; private set; }
     public static Transform TfEnemyPallette { get; private set; }
+    public static Transform TfTurnCheckerText { get; private set; }
+
+    public static GameObject ObjTurnCheckerTextPrefab { get; private set; }
 
     // Start is called before the first frame update
     void Awake()
@@ -30,8 +33,14 @@ public class GameResources : MonoBehaviour
 
         TfUnitLayer = GameObject.Find("UnitLayer").transform;
         TfEnemyPallette = GameObject.Find("EnemyPallette").transform;
+        TfTurnCheckerText = GameObject.Find("TurnCheckerText").transform;
+
+        Logger.Log("GameResources", "TfEnemyPallette", TfEnemyPallette);
+
+        ObjTurnCheckerTextPrefab = GameObject.Find("TurnCheckerTextPrefab");
 
         Dialog.gameObject.SetActive(false);
+        ObjTurnCheckerTextPrefab.SetActive(false);
     }
 
     public T FindComponent<T>(string name)
