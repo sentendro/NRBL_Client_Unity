@@ -1,13 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/resources/data/units.xml.meta
 guid: 65e7c33fe3f60c041b2cbd2cbf16a7c2
-timeCreated: 1537672094
-=======
-guid: 0d0c1b309f4afc94b86d5adc71702143
-folderAsset: yes
-timeCreated: 1533131389
->>>>>>> develop:Assets/scriptsNew/controller.meta
-licenseType: Free
 TextScriptImporter:
   externalObjects: {}
   userData: 
