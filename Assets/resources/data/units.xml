@@ -9,6 +9,7 @@
     <GrowUp>
       <AddGold>2</AddGold>
     </GrowUp>
+    <Makable>true</Makable>
   </Store>
   <Soldier>
     <Name>Soldier</Name>
@@ -18,6 +19,7 @@
     <Food>1</Food>
     <Attack>1</Attack>
     <Move>1</Move>
+    <Makable>true</Makable>
   </Soldier>
   <House>
     <Name>House</Name>
@@ -29,6 +31,7 @@
     <GrowUp>
       <Capacity>2</Capacity>
     </GrowUp>
+    <Makable>true</Makable>
   </House>
   <Castle>
     <Name>Castle</Name>
@@ -48,6 +51,7 @@
         </Unit>
       </Units>
     </AddUnit>
+    <Makable>true</Makable>
   </Castle>
   <Magician>
     <Name>Magician</Name>
@@ -55,14 +59,14 @@
     <Hp>1</Hp>
     <Price>2</Price>
     <Move>1</Move>
-    <Attack>1</Attack>
     <Food>2</Food>
     <RangeAttack>
       <Name>FireBall</Name>
       <FileName>7FireBall</FileName>
       <Range>2</Range>
+      <Attack>1</Attack>
     </RangeAttack>
-    <PlayerAttack>false</PlayerAttack>
+    <Makable>true</Makable>
   </Magician>
   <Person>
     <Name>Person</Name>
@@ -70,5 +74,6 @@
     <Hp>1</Hp>
     <Move>1</Move>
     <Attack>1</Attack>
+    <Makable>false</Makable>
   </Person>
 </Units>
