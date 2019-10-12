@@ -4,9 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - palette
   - created
   - tile
+  - pallette
+  - placable
   layers:
   - Default
   - TransparentFX
