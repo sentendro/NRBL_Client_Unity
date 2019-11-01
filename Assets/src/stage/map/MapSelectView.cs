@@ -47,6 +47,17 @@ public class MapSelectView : MonoBehaviour
         }
     }
 
+    public void Place(Collider2D collider)
+    {
+        // 타일인 경우
+        float x = collider.transform.localPosition.x;
+        float y = collider.transform.parent.localPosition.y;
+        outSelectedUI.transform.localPosition = new Vector3(x, y);
+        outSelectedUI.SetActive(true);
+        inSelectedTIle = collider.gameObject;
+        inSelectedPosition = new Vector3(x, y);
+    }
+
     public void HideSelectedUI()
     {
         outSelectedUI.SetActive(false);
